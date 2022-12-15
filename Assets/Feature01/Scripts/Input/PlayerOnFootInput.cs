@@ -13,6 +13,11 @@ public class PlayerOnFootInput : MonoBehaviour
 
     PlayerInput playerInput;
 
+    private void Awake()
+    {
+        mainCamera = Camera.main;
+    }
+
     private void OnEnable()
     {
         playerInput = new PlayerInput();
@@ -43,9 +48,9 @@ public class PlayerOnFootInput : MonoBehaviour
 
    
 
-    public Vector2 getMousePosition()
+    public Vector3 getMousePosition()
     {
-        return Mouse.current.position.ReadValue();
+        return mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCamera.transform.position.y));
 
     }
 

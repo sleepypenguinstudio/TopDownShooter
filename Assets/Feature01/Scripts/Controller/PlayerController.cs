@@ -52,11 +52,6 @@ public class PlayerController : MonoBehaviour
     {
        
             
-           playerLookInput.x= PlayerFootInput.getMousePosition().x;
-        playerLookInput.y = PlayerFootInput.getMousePosition().y;
-
-        playerLookInput.z = 0;
-        
-          Quaternion.Euler(new Vector3(playerLookInput.x,transform.position.y,playerLookInput.z));
+           transform.LookAt(PlayerFootInput.getMousePosition()+Vector3.up*transform.position.y);
     }
 }
