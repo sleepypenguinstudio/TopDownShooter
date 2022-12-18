@@ -11,11 +11,16 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private Camera mainCamera;
 
+    PlayerController playerController;
+    ShootSystem shootSystem;
+
     PlayerInput playerInput;
 
     private void Awake()
     {
         mainCamera = Camera.main;
+        playerController = GetComponent<PlayerController>();
+        shootSystem =  GetComponent<ShootSystem>();
     }
 
     private void OnEnable()
@@ -26,17 +31,29 @@ public class PlayerOnFootInput : MonoBehaviour
         playerInput.PlayerOnFoot.Movement.performed += SetMove;
         playerInput.PlayerOnFoot.Movement.canceled += SetMove;
 
+
+        playerInput.PlayerOnFoot.Fire.performed += setShoot;
+        playerInput.PlayerOnFoot.Fire.Enable();
+
      
     }
 
-    
+    private void setShoot(InputAction.CallbackContext context)
+    {
+        Vector3 mousePosition = getMousePosition();
+
+        
+        shootSystem.playerShoot(mousePosition);
+    }
+
     private void OnDisable()
     {
         playerInput.PlayerOnFoot.Movement.performed -= SetMove;
         playerInput.PlayerOnFoot.Movement.canceled -= SetMove;
 
-     
+        playerInput.PlayerOnFoot.Fire.Disable();
 
+        
         playerInput.PlayerOnFoot.Disable();
     }
 
@@ -54,6 +71,7 @@ public class PlayerOnFootInput : MonoBehaviour
 
     }
 
+    
 
 
 }

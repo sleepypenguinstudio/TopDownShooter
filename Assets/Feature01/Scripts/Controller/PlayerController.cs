@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerOnFootInput PlayerFootInput;
     [SerializeField] PlayerInput pl;
     Vector3 playerMoveInput;
-    Vector3 playerLookInput;
+    //Vector3 playerLookInput;
 
 
 
@@ -50,8 +50,12 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerLook()
     {
-       
-            
-           transform.LookAt(PlayerFootInput.getMousePosition()+Vector3.up*transform.position.y);
+        Vector3 playerLookPosition = PlayerFootInput.getMousePosition() + Vector3.up * transform.position.y;
+
+
+           transform.LookAt(playerLookPosition);
     }
+
+
+    
 }
