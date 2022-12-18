@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class ShootSystem : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed = 50f;
-   [SerializeField] PlayerOnFootInput playerFootInput;
+    [SerializeField] float bulletSpeed = 5f;
+    [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject bulletGameObject;
-    Rigidbody rbBullet;
+    //Rigidbody rbBullet;
 
 
     private void Awake()
     {
-        rbBullet = bulletGameObject.GetComponent<Rigidbody>();
+        //rbBullet = bulletGameObject.GetComponent<Rigidbody>();
         playerFootInput = GetComponent<PlayerOnFootInput>();
     }
 
     public  void playerShoot(Vector3 mousePosition)
     {
         Vector3 playerLookPosition = playerFootInput.getMousePosition() + Vector3.up * transform.position.y;
-        Instantiate(bulletGameObject, spawnPoint.position,Quaternion.identity);
-        rbBullet.velocity = bulletSpeed *(mousePosition-playerLookPosition);
-
+       GameObject firedBullet = Instantiate(bulletGameObject, spawnPoint.position,Quaternion.identity);
+        firedBullet.GetComponent<Rigidbody>().velocity = (playerLookPosition-this.transform.position).normalized *bulletSpeed;
+       
     }
 
 

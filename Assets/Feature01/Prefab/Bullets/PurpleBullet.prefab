@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 239772391003137779}
   - component: {fileID: 239772391003137776}
   - component: {fileID: 2075699951856440617}
+  - component: {fileID: -7937114511556142608}
   m_Layer: 0
   m_Name: PurpleBullet
   m_TagString: Untagged
@@ -112,5 +113,18 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &-7937114511556142608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239772391003137777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804c0868df246794eb5e4ac731784abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 50
