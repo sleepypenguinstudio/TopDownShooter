@@ -66,7 +66,8 @@ public class PlayerOnFootInput : MonoBehaviour
    
 
     public Vector3 getMousePosition()
-    {
+    {  
+        
         return mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCamera.transform.position.y));
 
     }

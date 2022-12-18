@@ -7,7 +7,7 @@ public class ShootSystem : MonoBehaviour
     [SerializeField] float bulletSpeed = 5f;
     [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private GameObject bulletGameObject;
+    [SerializeField] public GameObject bulletGameObject;
     //Rigidbody rbBullet;
 
 
