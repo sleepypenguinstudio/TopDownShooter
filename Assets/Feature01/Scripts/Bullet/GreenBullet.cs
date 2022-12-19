@@ -6,6 +6,7 @@ public class GreenBullet : BulletAbstractClasses
 {
     Color greenColor = Color.green;
     
+    
     public override void InitializeBullet(GameObject bullet)
     {
         bullet.GetComponent<MeshRenderer>().sharedMaterial.color = greenColor ;

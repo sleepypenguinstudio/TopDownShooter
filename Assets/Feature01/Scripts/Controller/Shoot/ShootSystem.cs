@@ -21,10 +21,10 @@ public class ShootSystem : MonoBehaviour
     public  void playerShoot(Vector3 mousePosition)
     {
 
-        Vector3 playerLookPosition = mousePosition + Vector3.up * transform.position.y;
-       
+
+
         //GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject();
-       
+
         //if (bullet != null)
         //{
         //    bullet.GetComponent<Rigidbody>().velocity = (playerLookPosition - this.transform.position).normalized * bulletSpeed;
@@ -32,8 +32,8 @@ public class ShootSystem : MonoBehaviour
 
 
 
-      // 
-       GameObject firedBullet = Instantiate(bulletGameObject, spawnPoint.position,Quaternion.identity);
+        Vector3 playerLookPosition = mousePosition + Vector3.up * transform.position.y;
+        GameObject firedBullet = Instantiate(bulletGameObject, spawnPoint.position,Quaternion.identity);
        firedBullet.GetComponent<Rigidbody>().velocity = (playerLookPosition-this.transform.position).normalized *bulletSpeed;
        
     }

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody _rigidbody;
-    [SerializeField] PlayerOnFootInput PlayerFootInput;
+    [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] PlayerInput playerInput;
     Vector3 playerMoveInput;
     //Vector3 playerLookInput;
@@ -44,13 +44,13 @@ public class PlayerController : MonoBehaviour
     private void PlayerMove()
     {
        
-        playerMoveInput = new Vector3(PlayerFootInput.MoveInput.x * _rigidbody.mass * speed, 0.0f, PlayerFootInput.MoveInput.y * _rigidbody.mass * speed);
+        playerMoveInput = new Vector3(playerFootInput.MoveInput.x * _rigidbody.mass * speed, 0.0f, playerFootInput.MoveInput.y * _rigidbody.mass * speed);
         
     }
 
     private void PlayerLook()
     {
-        Vector3 playerLookPosition = PlayerFootInput.getMousePosition() + Vector3.up * transform.position.y;
+        Vector3 playerLookPosition = playerFootInput.getMousePosition() + Vector3.up * transform.position.y;
 
 
            transform.LookAt(playerLookPosition);
