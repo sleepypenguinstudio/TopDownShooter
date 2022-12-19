@@ -40,10 +40,9 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private void setShoot(InputAction.CallbackContext context)
     {
-        Vector3 mousePosition = getMousePosition();
+      
 
-        
-        shootSystem.playerShoot(mousePosition);
+        shootSystem.playerShoot(getMousePosition());
     }
 
     private void OnDisable()
@@ -66,9 +65,14 @@ public class PlayerOnFootInput : MonoBehaviour
    
 
     public Vector3 getMousePosition()
-    {  
-        
-        return mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCamera.transform.position.y));
+    {
+
+        Vector2 mousePosition = playerInput.PlayerOnFoot.MousePosition.ReadValue<Vector2>();
+
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,mainCamera.transform.position.y));
+
+
+        return mouseWorldPosition;
 
     }
 

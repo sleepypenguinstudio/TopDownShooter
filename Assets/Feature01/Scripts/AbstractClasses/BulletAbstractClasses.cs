@@ -7,5 +7,5 @@ using UnityEngine;
 public abstract class BulletAbstractClasses 
 {
     
-    public abstract void selectBullet(GameObject bullet);
+    public abstract void InitializeBullet(GameObject bullet);
 }

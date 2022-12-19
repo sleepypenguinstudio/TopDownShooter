@@ -15,6 +15,7 @@ public class DestroySelf : MonoBehaviour
     {
         yield return new WaitForSeconds(destroyTime);
         Destroy(this.gameObject);
+      //  this.gameObject.SetActive(false);
     }
 
     //private void OnTriggerEnter(Collider other)

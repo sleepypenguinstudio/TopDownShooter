@@ -8,6 +8,7 @@ public class ShootSystem : MonoBehaviour
     [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public GameObject bulletGameObject;
+
     //Rigidbody rbBullet;
 
 
@@ -19,9 +20,21 @@ public class ShootSystem : MonoBehaviour
 
     public  void playerShoot(Vector3 mousePosition)
     {
-        Vector3 playerLookPosition = playerFootInput.getMousePosition() + Vector3.up * transform.position.y;
+
+        Vector3 playerLookPosition = mousePosition + Vector3.up * transform.position.y;
+       
+        //GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject();
+       
+        //if (bullet != null)
+        //{
+        //    bullet.GetComponent<Rigidbody>().velocity = (playerLookPosition - this.transform.position).normalized * bulletSpeed;
+        //}
+
+
+
+      // 
        GameObject firedBullet = Instantiate(bulletGameObject, spawnPoint.position,Quaternion.identity);
-        firedBullet.GetComponent<Rigidbody>().velocity = (playerLookPosition-this.transform.position).normalized *bulletSpeed;
+       firedBullet.GetComponent<Rigidbody>().velocity = (playerLookPosition-this.transform.position).normalized *bulletSpeed;
        
     }
 
@@ -31,7 +44,8 @@ public class ShootSystem : MonoBehaviour
 
         BulletFactoryClass bulletFactoryClass = new BulletFactoryClass();
         BulletAbstractClasses bulletAbstractClasses = bulletFactoryClass.getBulletType(bulletName);
-        bulletAbstractClasses.selectBullet(bulletGameObject);
+        bulletAbstractClasses.InitializeBullet(bulletGameObject);
+        //ObjectPooler.SharedInstance.setPooledObject(bulletGameObject);
 
 
     }

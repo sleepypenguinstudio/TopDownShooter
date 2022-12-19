@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody rb;
+    Rigidbody _rigidbody;
     [SerializeField] PlayerOnFootInput PlayerFootInput;
-    [SerializeField] PlayerInput pl;
+    [SerializeField] PlayerInput playerInput;
     Vector3 playerMoveInput;
     //Vector3 playerLookInput;
 
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
      
         
     }
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         
         PlayerMove();
         PlayerLook();
-        rb.AddForce(playerMoveInput,ForceMode.Force);
+        _rigidbody.AddForce(playerMoveInput,ForceMode.Force);
 
 
       
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     private void PlayerMove()
     {
        
-        playerMoveInput = new Vector3(PlayerFootInput.MoveInput.x * rb.mass * speed, 0.0f, PlayerFootInput.MoveInput.y * rb.mass * speed);
+        playerMoveInput = new Vector3(PlayerFootInput.MoveInput.x * _rigidbody.mass * speed, 0.0f, PlayerFootInput.MoveInput.y * _rigidbody.mass * speed);
         
     }
 

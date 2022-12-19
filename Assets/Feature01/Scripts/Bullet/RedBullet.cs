@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class RedBullet : BulletAbstractClasses
 {
+    Color redColor = Color.red;
     
-    public override void selectBullet(GameObject bullet)
+    public override void InitializeBullet(GameObject bullet)
     {
-        bullet.GetComponent<MeshRenderer>().sharedMaterial.color = Color.red;
+        bullet.GetComponent<MeshRenderer>().sharedMaterial.color = redColor;
 
     }
 }

@@ -44,6 +44,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""8a4b639d-bc1a-408a-bae8-2d3a08bc6334"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9a71db0-e9be-4b26-b52b-9ac71f1ffed8"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +142,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerOnFoot = asset.FindActionMap("PlayerOnFoot", throwIfNotFound: true);
         m_PlayerOnFoot_Movement = m_PlayerOnFoot.FindAction("Movement", throwIfNotFound: true);
         m_PlayerOnFoot_Fire = m_PlayerOnFoot.FindAction("Fire", throwIfNotFound: true);
+        m_PlayerOnFoot_MousePosition = m_PlayerOnFoot.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,12 +204,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IPlayerOnFootActions m_PlayerOnFootActionsCallbackInterface;
     private readonly InputAction m_PlayerOnFoot_Movement;
     private readonly InputAction m_PlayerOnFoot_Fire;
+    private readonly InputAction m_PlayerOnFoot_MousePosition;
     public struct PlayerOnFootActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerOnFootActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerOnFoot_Movement;
         public InputAction @Fire => m_Wrapper.m_PlayerOnFoot_Fire;
+        public InputAction @MousePosition => m_Wrapper.m_PlayerOnFoot_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_PlayerOnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -204,6 +227,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnFire;
+                @MousePosition.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnMousePosition;
             }
             m_Wrapper.m_PlayerOnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -214,6 +240,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
             }
         }
     }
@@ -222,5 +251,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

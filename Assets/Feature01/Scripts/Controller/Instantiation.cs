@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Instantiation : MonoBehaviour
+public class Instantiation 
 {
   public enum characterList
     {
