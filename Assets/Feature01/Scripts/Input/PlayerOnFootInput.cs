@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerOnFootInput : MonoBehaviour
 {
     public Vector2 MoveInput { get; private set; }
+   
     
 
     private Camera mainCamera;
@@ -40,9 +41,9 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private void setShoot(InputAction.CallbackContext context)
     {
-      
-
+       
         shootSystem.playerShoot(getMousePosition());
+        
     }
 
     private void OnDisable()
@@ -59,7 +60,9 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private void SetMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-       MoveInput=context.ReadValue<Vector2>();
+
+        playerController.movementInput = context.ReadValue<Vector2>();
+      // MoveInput=context.ReadValue<Vector2>();
     }
 
    
@@ -71,12 +74,11 @@ public class PlayerOnFootInput : MonoBehaviour
 
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,mainCamera.transform.position.y));
 
-
+        
         return mouseWorldPosition;
 
     }
 
-    
 
-
+   
 }

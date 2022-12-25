@@ -9,10 +9,15 @@ public class PlayerController : MonoBehaviour
     Rigidbody _rigidbody;
     [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] PlayerInput playerInput;
+    [SerializeField] MovementController movementController;
     Vector3 playerMoveInput;
     //Vector3 playerLookInput;
 
 
+    public Vector2 movementInput;
+
+
+    public Vector3 mousePosition;
 
  
 
@@ -30,10 +35,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        mousePosition = playerFootInput.getMousePosition();
+
+
+
+
+        movementController.PlayerMove(movementInput,speed,_rigidbody);      
+        movementController.PlayerLook(mousePosition);
+       
         
-        PlayerMove();
-        PlayerLook();
-        _rigidbody.AddForce(playerMoveInput,ForceMode.Force);
+        
 
 
       
@@ -41,20 +53,20 @@ public class PlayerController : MonoBehaviour
 
    
 
-    private void PlayerMove()
-    {
+    //private void PlayerMove()
+    //{
        
-        playerMoveInput = new Vector3(playerFootInput.MoveInput.x * _rigidbody.mass * speed, 0.0f, playerFootInput.MoveInput.y * _rigidbody.mass * speed);
+    //    playerMoveInput = new Vector3(playerFootInput.MoveInput.x * _rigidbody.mass * speed, 0.0f, playerFootInput.MoveInput.y * _rigidbody.mass * speed);
         
-    }
+    //}
 
-    private void PlayerLook()
-    {
-        Vector3 playerLookPosition = playerFootInput.getMousePosition() + Vector3.up * transform.position.y;
+    //private void PlayerLook()
+    //{
+    //    Vector3 playerLookPosition = playerFootInput.getMousePosition() + Vector3.up * transform.position.y;
 
 
-           transform.LookAt(playerLookPosition);
-    }
+    //       transform.LookAt(playerLookPosition);
+    //}
 
 
     
