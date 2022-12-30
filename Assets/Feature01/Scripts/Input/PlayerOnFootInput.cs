@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerOnFootInput : MonoBehaviour
 {
     public Vector2 MoveInput { get; private set; }
@@ -15,8 +16,9 @@ public class PlayerOnFootInput : MonoBehaviour
     PlayerController playerController;
     ShootSystem shootSystem;
 
-    PlayerInput playerInput;
+    [SerializeField] PlayerInput playerInput;
 
+   
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -26,6 +28,7 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private void OnEnable()
     {
+        
         playerInput = new PlayerInput();
         playerInput.PlayerOnFoot.Enable();
 
@@ -36,7 +39,23 @@ public class PlayerOnFootInput : MonoBehaviour
         playerInput.PlayerOnFoot.Fire.performed += setShoot;
         playerInput.PlayerOnFoot.Fire.Enable();
 
-     
+        playerInput.PlayerOnFoot.GetDirection.performed += SetDirection;
+        playerInput.PlayerOnFoot.GetDirection.canceled += SetDirection;
+
+
+    }
+
+    private void SetDirection(InputAction.CallbackContext context)
+    {
+        playerController.getDirection = context.ReadValue<Vector2>();
+      
+
+
+
+        //Vector2 moveVectorLeft = context.ReadValue<Vector2>();
+        //Vector2 currentPosition = Mouse.current.position.ReadValue();
+        //Vector2 newPosition = currentPosition + moveVectorLeft*50f*Time.deltaTime;
+        //Mouse.current.WarpCursorPosition(newPosition);
     }
 
     private void setShoot(InputAction.CallbackContext context)
@@ -50,6 +69,9 @@ public class PlayerOnFootInput : MonoBehaviour
     {
         playerInput.PlayerOnFoot.Movement.performed -= SetMove;
         playerInput.PlayerOnFoot.Movement.canceled -= SetMove;
+
+        playerInput.PlayerOnFoot.GetDirection.performed -= SetDirection;
+        playerInput.PlayerOnFoot.GetDirection.canceled -= SetDirection;
 
         playerInput.PlayerOnFoot.Fire.Disable();
 

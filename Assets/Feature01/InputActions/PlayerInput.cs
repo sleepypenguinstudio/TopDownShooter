@@ -53,6 +53,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GetDirection"",
+                    ""type"": ""Value"",
+                    ""id"": ""d08d0451-773d-48cf-8ed7-831290cbbb87"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -73,7 +82,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -84,7 +93,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -95,7 +104,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -106,10 +115,21 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ccc2c836-3cac-4d78-895d-fb6ca7fdb55a"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -117,7 +137,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd106e57-4b92-4985-8090-82a5ed3b8ee6"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -128,21 +159,56 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca46d57f-2bdc-4924-bb95-34c7af8dc83b"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""GetDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // PlayerOnFoot
         m_PlayerOnFoot = asset.FindActionMap("PlayerOnFoot", throwIfNotFound: true);
         m_PlayerOnFoot_Movement = m_PlayerOnFoot.FindAction("Movement", throwIfNotFound: true);
         m_PlayerOnFoot_Fire = m_PlayerOnFoot.FindAction("Fire", throwIfNotFound: true);
         m_PlayerOnFoot_MousePosition = m_PlayerOnFoot.FindAction("MousePosition", throwIfNotFound: true);
+        m_PlayerOnFoot_GetDirection = m_PlayerOnFoot.FindAction("GetDirection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,6 +271,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerOnFoot_Movement;
     private readonly InputAction m_PlayerOnFoot_Fire;
     private readonly InputAction m_PlayerOnFoot_MousePosition;
+    private readonly InputAction m_PlayerOnFoot_GetDirection;
     public struct PlayerOnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -212,6 +279,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerOnFoot_Movement;
         public InputAction @Fire => m_Wrapper.m_PlayerOnFoot_Fire;
         public InputAction @MousePosition => m_Wrapper.m_PlayerOnFoot_MousePosition;
+        public InputAction @GetDirection => m_Wrapper.m_PlayerOnFoot_GetDirection;
         public InputActionMap Get() { return m_Wrapper.m_PlayerOnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -230,6 +298,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @MousePosition.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnMousePosition;
+                @GetDirection.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnGetDirection;
+                @GetDirection.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnGetDirection;
+                @GetDirection.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnGetDirection;
             }
             m_Wrapper.m_PlayerOnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -243,14 +314,36 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
+                @GetDirection.started += instance.OnGetDirection;
+                @GetDirection.performed += instance.OnGetDirection;
+                @GetDirection.canceled += instance.OnGetDirection;
             }
         }
     }
     public PlayerOnFootActions @PlayerOnFoot => new PlayerOnFootActions(this);
+    private int m_KeyboardSchemeIndex = -1;
+    public InputControlScheme KeyboardScheme
+    {
+        get
+        {
+            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+            return asset.controlSchemes[m_KeyboardSchemeIndex];
+        }
+    }
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
     public interface IPlayerOnFootActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnGetDirection(InputAction.CallbackContext context);
     }
 }

@@ -32,9 +32,9 @@ public class ShootSystem : MonoBehaviour
 
 
 
-        Vector3 playerLookPosition = mousePosition + Vector3.up * transform.position.y;
+        //Vector3 playerLookPosition = mousePosition + Vector3.up * transform.position.y;
         GameObject firedBullet = Instantiate(bulletGameObject, spawnPoint.position,Quaternion.identity);
-       firedBullet.GetComponent<Rigidbody>().velocity = (playerLookPosition-this.transform.position).normalized *bulletSpeed;
+       firedBullet.GetComponent<Rigidbody>().velocity = transform.forward *bulletSpeed;
        
     }
 

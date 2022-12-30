@@ -10,20 +10,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] MovementController movementController;
+    [SerializeField] GamePadCursor gamepadCursor;
+
     Vector3 playerMoveInput;
     //Vector3 playerLookInput;
 
 
     public Vector2 movementInput;
 
-
-    public Vector3 mousePosition;
+    public Vector2 getDirection;
+    public Vector3 cursorPosition;
 
  
 
 
 
-    [SerializeField] float speed = 30.0f;
+    [SerializeField] float playerSpeed = 30.0f;
+    [SerializeField] float _cursorSpeed = 30f;
 
     private void Awake()
     {
@@ -36,22 +39,30 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        mousePosition = playerFootInput.getMousePosition();
+
+        //cursorPosition = gamepadCursor.getCursorPosition();
 
 
 
-
-        movementController.PlayerMove(movementInput,speed,_rigidbody);      
-        movementController.PlayerLook(mousePosition);
+        // gamepadCursor.moveCursorPosition(getDirection,_cursorSpeed);
+        // movementController.PlayerLook(cursorPosition);
+       //cursorPosition = playerFootInput.getMousePosition();
        
         
-        
+        movementController.PlayerMove(movementInput,playerSpeed,_rigidbody);
+
+        movementController.PlayerLook(getDirection, _rigidbody, this.transform);
 
 
-      
+
+
+
     }
 
-   
+   //public void RotatePLayer(Vector2 inputForRotation)
+   // {
+       
+   // }
 
     //private void PlayerMove()
     //{
