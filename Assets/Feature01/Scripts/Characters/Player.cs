@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : CharacterAbstractClass
 {
 
-    public override void characterInstantiate()
+    public override void CharacterInstantiate()
     {
         //code for player instantiation
     }

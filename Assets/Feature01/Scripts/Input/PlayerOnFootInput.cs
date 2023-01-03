@@ -61,7 +61,7 @@ public class PlayerOnFootInput : MonoBehaviour
     private void setShoot(InputAction.CallbackContext context)
     {
        
-        shootSystem.playerShoot(getMousePosition());
+        shootSystem.playerShoot();
         
     }
 
@@ -89,17 +89,17 @@ public class PlayerOnFootInput : MonoBehaviour
 
    
 
-    public Vector3 getMousePosition()
-    {
+    //public Vector3 getMousePosition()
+    //{
 
-        Vector2 mousePosition = playerInput.PlayerOnFoot.MousePosition.ReadValue<Vector2>();
+    //    Vector2 mousePosition = playerInput.PlayerOnFoot.MousePosition.ReadValue<Vector2>();
 
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,mainCamera.transform.position.y));
+    //    Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,mainCamera.transform.position.y));
 
         
-        return mouseWorldPosition;
+    //    return mouseWorldPosition;
 
-    }
+    //}
 
 
    

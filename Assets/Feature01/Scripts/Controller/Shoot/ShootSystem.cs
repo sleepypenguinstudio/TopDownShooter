@@ -18,7 +18,7 @@ public class ShootSystem : MonoBehaviour
         playerFootInput = GetComponent<PlayerOnFootInput>();
     }
 
-    public  void playerShoot(Vector3 mousePosition)
+    public  void playerShoot()
     {
 
 

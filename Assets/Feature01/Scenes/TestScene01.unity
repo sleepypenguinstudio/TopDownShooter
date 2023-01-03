@@ -1644,7 +1644,6 @@ GameObject:
   - component: {fileID: 905352037}
   - component: {fileID: 905352036}
   - component: {fileID: 905352035}
-  - component: {fileID: 905352043}
   - component: {fileID: 905352034}
   - component: {fileID: 905352033}
   - component: {fileID: 905352040}
@@ -1671,12 +1670,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerFootInput: {fileID: 905352034}
   movementController: {fileID: 905352042}
-  gamepadCursor: {fileID: 905352043}
   movementInput: {x: 0, y: 0}
   getDirection: {x: 0, y: 0}
-  cursorPosition: {x: 0, y: 0, z: 0}
   playerSpeed: 3
-  _cursorSpeed: 6
 --- !u!114 &905352034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,19 +1841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5bdf21d9211d6d4a9a969d5ffb1c939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &905352043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 905352032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c69e3e92e6cfe4895dab024bbd2080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursor: {fileID: 0}
 --- !u!1 &1059141785
 GameObject:
   m_ObjectHideFlags: 0

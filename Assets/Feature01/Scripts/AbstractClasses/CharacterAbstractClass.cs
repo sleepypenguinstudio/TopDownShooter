@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class CharacterAbstractClass
 {
-    public abstract void characterInstantiate();
+    public abstract void CharacterInstantiate();
 }

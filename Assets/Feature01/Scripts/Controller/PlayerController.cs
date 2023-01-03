@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] MovementController movementController;
-    [SerializeField] GamePadCursor gamepadCursor;
+    
 
     Vector3 playerMoveInput;
     //Vector3 playerLookInput;
@@ -19,14 +19,14 @@ public class PlayerController : MonoBehaviour
     public Vector2 movementInput;
 
     public Vector2 getDirection;
-    public Vector3 cursorPosition;
+   
 
  
 
 
 
     [SerializeField] float playerSpeed = 30.0f;
-    [SerializeField] float _cursorSpeed = 30f;
+   
 
     private void Awake()
     {

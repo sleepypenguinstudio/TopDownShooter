@@ -62,6 +62,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3a76218-5498-4c25-bf01-644865b49e47"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,6 +183,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""GetDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8cf014fc-171c-4e0e-8f9a-7be63a98a10d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -209,6 +229,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerOnFoot_Fire = m_PlayerOnFoot.FindAction("Fire", throwIfNotFound: true);
         m_PlayerOnFoot_MousePosition = m_PlayerOnFoot.FindAction("MousePosition", throwIfNotFound: true);
         m_PlayerOnFoot_GetDirection = m_PlayerOnFoot.FindAction("GetDirection", throwIfNotFound: true);
+        m_PlayerOnFoot_Dash = m_PlayerOnFoot.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -272,6 +293,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerOnFoot_Fire;
     private readonly InputAction m_PlayerOnFoot_MousePosition;
     private readonly InputAction m_PlayerOnFoot_GetDirection;
+    private readonly InputAction m_PlayerOnFoot_Dash;
     public struct PlayerOnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -280,6 +302,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_PlayerOnFoot_Fire;
         public InputAction @MousePosition => m_Wrapper.m_PlayerOnFoot_MousePosition;
         public InputAction @GetDirection => m_Wrapper.m_PlayerOnFoot_GetDirection;
+        public InputAction @Dash => m_Wrapper.m_PlayerOnFoot_Dash;
         public InputActionMap Get() { return m_Wrapper.m_PlayerOnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -301,6 +324,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @GetDirection.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnGetDirection;
                 @GetDirection.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnGetDirection;
                 @GetDirection.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnGetDirection;
+                @Dash.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_PlayerOnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -317,6 +343,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @GetDirection.started += instance.OnGetDirection;
                 @GetDirection.performed += instance.OnGetDirection;
                 @GetDirection.canceled += instance.OnGetDirection;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -345,5 +374,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnGetDirection(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

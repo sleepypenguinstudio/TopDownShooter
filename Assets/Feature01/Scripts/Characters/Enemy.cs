@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : CharacterAbstractClass
 {
-    public override void characterInstantiate()
+    public override void CharacterInstantiate()
     {
         //code for enemy instantiation
     }
