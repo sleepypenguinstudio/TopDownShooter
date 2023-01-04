@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] MovementController movementController;
+
+    Transform playerTransform;
     
 
     Vector3 playerMoveInput;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        playerTransform = this.transform;
      
         
     }
@@ -59,16 +62,26 @@ public class PlayerController : MonoBehaviour
 
     }
 
-   //public void RotatePLayer(Vector2 inputForRotation)
-   // {
-       
-   // }
+
+
+    public void PlayerDash()
+    {
+      
+        StartCoroutine(movementController.Dash(_rigidbody,playerTransform));
+
+
+    }
+
+    //public void RotatePLayer(Vector2 inputForRotation)
+    // {
+
+    // }
 
     //private void PlayerMove()
     //{
-       
+
     //    playerMoveInput = new Vector3(playerFootInput.MoveInput.x * _rigidbody.mass * speed, 0.0f, playerFootInput.MoveInput.y * _rigidbody.mass * speed);
-        
+
     //}
 
     //private void PlayerLook()
@@ -80,5 +93,5 @@ public class PlayerController : MonoBehaviour
     //}
 
 
-    
+
 }

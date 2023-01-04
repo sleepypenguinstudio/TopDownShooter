@@ -43,7 +43,29 @@ public class PlayerOnFootInput : MonoBehaviour
         playerInput.PlayerOnFoot.GetDirection.canceled += SetDirection;
 
 
+        playerInput.PlayerOnFoot.Dash.performed += setDash;
+        playerInput.PlayerOnFoot.Dash.Enable();
+
+
     }
+
+    private void OnDisable()
+    {
+        playerInput.PlayerOnFoot.Movement.performed -= SetMove;
+        playerInput.PlayerOnFoot.Movement.canceled -= SetMove;
+
+        playerInput.PlayerOnFoot.GetDirection.performed -= SetDirection;
+        playerInput.PlayerOnFoot.GetDirection.canceled -= SetDirection;
+
+        playerInput.PlayerOnFoot.Fire.Disable();
+        playerInput.PlayerOnFoot.Dash.Disable();
+
+        playerInput.PlayerOnFoot.Disable();
+    }
+
+
+
+
 
     private void SetDirection(InputAction.CallbackContext context)
     {
@@ -60,24 +82,25 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private void setShoot(InputAction.CallbackContext context)
     {
-       
+        
+        
         shootSystem.playerShoot();
         
     }
 
-    private void OnDisable()
+
+    private void setDash(InputAction.CallbackContext context)
     {
-        playerInput.PlayerOnFoot.Movement.performed -= SetMove;
-        playerInput.PlayerOnFoot.Movement.canceled -= SetMove;
-
-        playerInput.PlayerOnFoot.GetDirection.performed -= SetDirection;
-        playerInput.PlayerOnFoot.GetDirection.canceled -= SetDirection;
-
-        playerInput.PlayerOnFoot.Fire.Disable();
-
-        
-        playerInput.PlayerOnFoot.Disable();
+        Debug.Log("ButtonPressed");
+        playerController.PlayerDash();
     }
+
+   
+
+
+
+
+
 
 
     private void SetMove(UnityEngine.InputSystem.InputAction.CallbackContext context)

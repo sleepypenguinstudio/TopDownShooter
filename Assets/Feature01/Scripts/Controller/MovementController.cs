@@ -6,7 +6,15 @@ public class MovementController : MonoBehaviour
 {
 
 
-   
+    public bool canDash = true;
+    public bool isDashing;
+    float dashingDistance = 24f;
+    float dashingTime = 0.2f;
+    float dashingCooldown = 1f;
+
+
+
+
    
     Vector3 playerMoveInput;
 
@@ -16,7 +24,7 @@ public class MovementController : MonoBehaviour
 
         _rigidbody.MovePosition(_rigidbody.position+playerMoveInput*Time.fixedDeltaTime);
         
-        // _rigidbody.AddForce(playerMoveInput,ForceMode.Force);
+      //  _rigidbody.AddForce(playerMoveInput,ForceMode.Force);
 
 
     }
@@ -41,6 +49,23 @@ public class MovementController : MonoBehaviour
         _rigidbody.MoveRotation(targetRotation);
 
 
+    }
+
+    
+    public IEnumerator Dash(Rigidbody _rigidbody,Transform playerTransfrom)
+    {
+        Debug.Log("IN the coroutine");
+        canDash = false;
+        isDashing = true;
+        _rigidbody.useGravity = false;
+        _rigidbody.velocity = playerTransfrom.forward*dashingDistance;
+        yield return new WaitForSeconds(dashingTime);
+        Debug.Log("past the coroutine");
+        _rigidbody.useGravity = true;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+
+        canDash = true;
     }
 
 
