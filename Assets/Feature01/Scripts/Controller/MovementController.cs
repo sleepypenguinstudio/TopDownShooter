@@ -20,11 +20,19 @@ public class MovementController : MonoBehaviour
 
     public void PlayerMove(Vector2 movementInput, float speed,Rigidbody _rigidbody)
     {
-        playerMoveInput = new Vector3(movementInput.x * _rigidbody.mass * speed, 0.0f, movementInput.y * _rigidbody.mass * speed);
+        playerMoveInput = new Vector3(movementInput.x , 0.0f, movementInput.y);
+        _rigidbody.velocity = playerMoveInput*speed;
 
-        _rigidbody.MovePosition(_rigidbody.position+playerMoveInput*Time.fixedDeltaTime);
+        
+        
+        //_rigidbody.MovePosition(_rigidbody.position+playerMoveInput*Time.fixedDeltaTime);
         
       //  _rigidbody.AddForce(playerMoveInput,ForceMode.Force);
+
+
+
+
+
 
 
     }
