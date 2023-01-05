@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerDash()
     {
       
-        StartCoroutine(movementController.Dash(_rigidbody,playerTransform));
+        StartCoroutine(movementController.Dash(_rigidbody,playerTransform,movementInput));
 
 
     }
