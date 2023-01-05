@@ -20,14 +20,15 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 movementInput;
 
-    public Vector2 getDirection;
-   
-
- 
+    public Vector2 GetDirection;
 
 
 
-    [SerializeField] float playerSpeed = 30.0f;
+
+    [SerializeField] PolarityManager PolarityManager;
+
+    public Stats PlayerStats;
+    
    
 
     private void Awake()
@@ -52,9 +53,9 @@ public class PlayerController : MonoBehaviour
        //cursorPosition = playerFootInput.getMousePosition();
        
         
-        movementController.PlayerMove(movementInput,playerSpeed,_rigidbody);
+        movementController.PlayerMove(movementInput,PolarityManager.MovementSpeed,_rigidbody);
 
-        movementController.PlayerLook(getDirection, _rigidbody, this.transform);
+        movementController.PlayerLook(GetDirection, _rigidbody, this.transform);
 
 
 
@@ -71,6 +72,13 @@ public class PlayerController : MonoBehaviour
 
 
     }
+
+
+    public void SetPlayerBody()
+    {
+        this.gameObject.GetComponent<MeshRenderer>().sharedMaterial.color = PolarityManager.PlayerColor;
+    }
+
 
     //public void RotatePLayer(Vector2 inputForRotation)
     // {

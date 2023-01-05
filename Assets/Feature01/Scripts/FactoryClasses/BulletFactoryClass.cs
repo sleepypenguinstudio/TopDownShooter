@@ -5,15 +5,16 @@ using UnityEngine;
 public class BulletFactoryClass 
 {
 
-    Dictionary<string, BulletAbstractClasses> bullets = new Dictionary<string, BulletAbstractClasses>()
+    Dictionary<PolarityManager.PlayerState, BulletAbstractClasses> bullets = new Dictionary<PolarityManager.PlayerState, BulletAbstractClasses>()
     {
-        {"red", new RedBullet()},
-        {"green",new GreenBullet()}
+        {PolarityManager.PlayerState.Ninja, new BlueBullet()},
+        {PolarityManager.PlayerState.General,new RedBullet()},
+        {PolarityManager.PlayerState.Tank,new GreenBullet()}
     };
    
-    public BulletAbstractClasses GetBulletType(string bullet)
+    public BulletAbstractClasses GetBulletType(PolarityManager.PlayerState playerState)
     {
 
-        return bullets[bullet];
+        return bullets[playerState];
     }
 }

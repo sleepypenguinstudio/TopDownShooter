@@ -445,7 +445,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 299ce1fee710d9646937322611cd0baa, type: 2}
+  - {fileID: 2100000, guid: c5c40670642d2ea41b2850c97710cde9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -872,7 +872,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 299ce1fee710d9646937322611cd0baa, type: 2}
+  - {fileID: 2100000, guid: c5c40670642d2ea41b2850c97710cde9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1249,12 +1249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1355,7 +1355,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 299ce1fee710d9646937322611cd0baa, type: 2}
+  - {fileID: 2100000, guid: c5c40670642d2ea41b2850c97710cde9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1586,7 +1586,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 299ce1fee710d9646937322611cd0baa, type: 2}
+  - {fileID: 2100000, guid: c5c40670642d2ea41b2850c97710cde9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1672,8 +1672,9 @@ MonoBehaviour:
   playerFootInput: {fileID: 905352034}
   movementController: {fileID: 905352042}
   movementInput: {x: 0, y: 0}
-  getDirection: {x: 0, y: 0}
-  playerSpeed: 10
+  GetDirection: {x: 0, y: 0}
+  PolarityManager: {fileID: 1305350303}
+  PlayerStats: {fileID: 0}
 --- !u!114 &905352034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,6 +1687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2e0ec6ac27f2c4e80fd7cbbc5a5635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PolarityManager: {fileID: 1305350303}
 --- !u!54 &905352035
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1830,6 +1832,7 @@ MonoBehaviour:
   playerFootInput: {fileID: 905352034}
   spawnPoint: {fileID: 413011840}
   bulletGameObject: {fileID: 239772391003137777, guid: f5b231e751c70774bb874d8ef5f0745b, type: 3}
+  PolarityManager: {fileID: 1305350303}
 --- !u!114 &905352042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1844,6 +1847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDash: 1
   isDashing: 0
+  dashingDistance: 100
   dashingCooldown: 1
   trailRenderer: {fileID: 905352043}
 --- !u!96 &905352043
@@ -2219,7 +2223,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 299ce1fee710d9646937322611cd0baa, type: 2}
+  - {fileID: 2100000, guid: c5c40670642d2ea41b2850c97710cde9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2263,6 +2267,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1305350302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1305350304}
+  - component: {fileID: 1305350303}
+  m_Layer: 0
+  m_Name: PolarityStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1305350303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305350302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 832e9755f10a64048b279695cee222a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 0
+  CurrentHealth: 0
+  MovementSpeed: 0
+  PlayerColor: {r: 0, g: 0, b: 0, a: 0}
+  CurrentPlayerStats: {fileID: 0}
+  CurrentPlayerState: 0
+  ShootSystem: {fileID: 905352041}
+  PlayerController: {fileID: 905352033}
+--- !u!4 &1305350304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305350302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.204145, y: -4.661625, z: -34.116184}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1587078767
 GameObject:

@@ -11,57 +11,97 @@ public class PlayerOnFootInput : MonoBehaviour
    
     
 
-    private Camera mainCamera;
+    private Camera MainCamera;
 
-    PlayerController playerController;
-    ShootSystem shootSystem;
+    PlayerController PlayerController;
+    ShootSystem ShootSystem;
+    [SerializeField]PolarityManager PolarityManager;
 
-    [SerializeField] PlayerInput playerInput;
+    [SerializeField] PlayerInput PlayerInput;
 
    
     private void Awake()
     {
-        mainCamera = Camera.main;
-        playerController = GetComponent<PlayerController>();
-        shootSystem =  GetComponent<ShootSystem>();
+        MainCamera = Camera.main;
+        PlayerController = GetComponent<PlayerController>();
+        ShootSystem =  GetComponent<ShootSystem>();
     }
 
     private void OnEnable()
     {
         
-        playerInput = new PlayerInput();
-        playerInput.PlayerOnFoot.Enable();
+        PlayerInput = new PlayerInput();
+        PlayerInput.PlayerOnFoot.Enable();
 
-        playerInput.PlayerOnFoot.Movement.performed += SetMove;
-        playerInput.PlayerOnFoot.Movement.canceled += SetMove;
+        PlayerInput.PlayerOnFoot.Movement.performed += SetMove;
+        PlayerInput.PlayerOnFoot.Movement.canceled += SetMove;
 
-
-        playerInput.PlayerOnFoot.Fire.performed += SetShoot;
-        playerInput.PlayerOnFoot.Fire.Enable();
-
-        playerInput.PlayerOnFoot.GetDirection.performed += SetDirection;
-        playerInput.PlayerOnFoot.GetDirection.canceled += SetDirection;
+        PlayerInput.PlayerOnFoot.GetDirection.performed += SetDirection;
+        PlayerInput.PlayerOnFoot.GetDirection.canceled += SetDirection;
 
 
-        playerInput.PlayerOnFoot.Dash.performed += SetDash;
-        playerInput.PlayerOnFoot.Dash.Enable();
+
+        PlayerInput.PlayerOnFoot.Fire.performed += SetShoot;
+        PlayerInput.PlayerOnFoot.Fire.Enable();
+
+       
+
+
+        PlayerInput.PlayerOnFoot.Dash.performed += SetDash;
+        PlayerInput.PlayerOnFoot.Dash.Enable();
+
+        PlayerInput.PlayerOnFoot.General.performed += SetGeneralState;
+        PlayerInput.PlayerOnFoot.General.Enable();
+
+
+        PlayerInput.PlayerOnFoot.Ninja.performed += SetNinjaState;
+        PlayerInput.PlayerOnFoot.Ninja.Enable();
+
+
+        PlayerInput.PlayerOnFoot.Tank.performed += SetTankState;
+        PlayerInput.PlayerOnFoot.Tank.Enable();
+
+
 
 
     }
 
     private void OnDisable()
     {
-        playerInput.PlayerOnFoot.Movement.performed -= SetMove;
-        playerInput.PlayerOnFoot.Movement.canceled -= SetMove;
+        PlayerInput.PlayerOnFoot.Movement.performed -= SetMove;
+        PlayerInput.PlayerOnFoot.Movement.canceled -= SetMove;
 
-        playerInput.PlayerOnFoot.GetDirection.performed -= SetDirection;
-        playerInput.PlayerOnFoot.GetDirection.canceled -= SetDirection;
+        PlayerInput.PlayerOnFoot.GetDirection.performed -= SetDirection;
+        PlayerInput.PlayerOnFoot.GetDirection.canceled -= SetDirection;
 
-        playerInput.PlayerOnFoot.Fire.Disable();
-        playerInput.PlayerOnFoot.Dash.Disable();
+        PlayerInput.PlayerOnFoot.Fire.Disable();
+        PlayerInput.PlayerOnFoot.Dash.Disable();
 
-        playerInput.PlayerOnFoot.Disable();
+        PlayerInput.PlayerOnFoot.General.Disable();
+        PlayerInput.PlayerOnFoot.Ninja.Disable();
+        PlayerInput.PlayerOnFoot.Tank.Disable();
+
+        PlayerInput.PlayerOnFoot.Disable();
     }
+
+
+
+    private void SetTankState(InputAction.CallbackContext context)
+    {
+        PolarityManager.SetPlayerState(PolarityManager.PlayerState.Tank);
+    }
+
+    private void SetNinjaState(InputAction.CallbackContext context)
+    {
+        PolarityManager.SetPlayerState(PolarityManager.PlayerState.Ninja);
+    }
+
+    private void SetGeneralState(InputAction.CallbackContext context)
+    {
+        PolarityManager.SetPlayerState(PolarityManager.PlayerState.General);
+    }
+
+   
 
 
 
@@ -69,7 +109,7 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private void SetDirection(InputAction.CallbackContext context)
     {
-        playerController.getDirection = context.ReadValue<Vector2>();
+        PlayerController.GetDirection = context.ReadValue<Vector2>();
       
 
 
@@ -84,7 +124,7 @@ public class PlayerOnFootInput : MonoBehaviour
     {
         
         
-        shootSystem.PlayerShoot();
+        ShootSystem.PlayerShoot();
         
     }
 
@@ -92,7 +132,7 @@ public class PlayerOnFootInput : MonoBehaviour
     private void SetDash(InputAction.CallbackContext context)
     {
         Debug.Log("ButtonPressed");
-        playerController.PlayerDash();
+        PlayerController.PlayerDash();
     }
 
    
@@ -106,7 +146,7 @@ public class PlayerOnFootInput : MonoBehaviour
     private void SetMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
 
-        playerController.movementInput = context.ReadValue<Vector2>();
+        PlayerController.movementInput = context.ReadValue<Vector2>();
       // MoveInput=context.ReadValue<Vector2>();
     }
 

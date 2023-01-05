@@ -71,6 +71,33 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tank"",
+                    ""type"": ""Button"",
+                    ""id"": ""2ad9954d-5434-4bf5-b0e9-234043354364"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ninja"",
+                    ""type"": ""Button"",
+                    ""id"": ""abfec748-30aa-482b-ab85-1141d9db255a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""General"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc801892-a60b-434f-844c-c226eb0df317"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,7 +181,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fd106e57-4b92-4985-8090-82a5ed3b8ee6"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -205,6 +232,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9ad7448-0d43-477a-879a-cbf8f910b614"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Tank"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6582af28-e6cd-4150-868d-b60d635b4a7b"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Ninja"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90dc50b3-3a3f-47ae-9eb4-53e07a62e708"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""General"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -241,6 +301,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerOnFoot_MousePosition = m_PlayerOnFoot.FindAction("MousePosition", throwIfNotFound: true);
         m_PlayerOnFoot_GetDirection = m_PlayerOnFoot.FindAction("GetDirection", throwIfNotFound: true);
         m_PlayerOnFoot_Dash = m_PlayerOnFoot.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerOnFoot_Tank = m_PlayerOnFoot.FindAction("Tank", throwIfNotFound: true);
+        m_PlayerOnFoot_Ninja = m_PlayerOnFoot.FindAction("Ninja", throwIfNotFound: true);
+        m_PlayerOnFoot_General = m_PlayerOnFoot.FindAction("General", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -305,6 +368,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerOnFoot_MousePosition;
     private readonly InputAction m_PlayerOnFoot_GetDirection;
     private readonly InputAction m_PlayerOnFoot_Dash;
+    private readonly InputAction m_PlayerOnFoot_Tank;
+    private readonly InputAction m_PlayerOnFoot_Ninja;
+    private readonly InputAction m_PlayerOnFoot_General;
     public struct PlayerOnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -314,6 +380,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_PlayerOnFoot_MousePosition;
         public InputAction @GetDirection => m_Wrapper.m_PlayerOnFoot_GetDirection;
         public InputAction @Dash => m_Wrapper.m_PlayerOnFoot_Dash;
+        public InputAction @Tank => m_Wrapper.m_PlayerOnFoot_Tank;
+        public InputAction @Ninja => m_Wrapper.m_PlayerOnFoot_Ninja;
+        public InputAction @General => m_Wrapper.m_PlayerOnFoot_General;
         public InputActionMap Get() { return m_Wrapper.m_PlayerOnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -338,6 +407,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnDash;
+                @Tank.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnTank;
+                @Tank.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnTank;
+                @Tank.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnTank;
+                @Ninja.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnNinja;
+                @Ninja.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnNinja;
+                @Ninja.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnNinja;
+                @General.started -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnGeneral;
+                @General.performed -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnGeneral;
+                @General.canceled -= m_Wrapper.m_PlayerOnFootActionsCallbackInterface.OnGeneral;
             }
             m_Wrapper.m_PlayerOnFootActionsCallbackInterface = instance;
             if (instance != null)
@@ -357,6 +435,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Tank.started += instance.OnTank;
+                @Tank.performed += instance.OnTank;
+                @Tank.canceled += instance.OnTank;
+                @Ninja.started += instance.OnNinja;
+                @Ninja.performed += instance.OnNinja;
+                @Ninja.canceled += instance.OnNinja;
+                @General.started += instance.OnGeneral;
+                @General.performed += instance.OnGeneral;
+                @General.canceled += instance.OnGeneral;
             }
         }
     }
@@ -386,5 +473,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnGetDirection(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnTank(InputAction.CallbackContext context);
+        void OnNinja(InputAction.CallbackContext context);
+        void OnGeneral(InputAction.CallbackContext context);
     }
 }
