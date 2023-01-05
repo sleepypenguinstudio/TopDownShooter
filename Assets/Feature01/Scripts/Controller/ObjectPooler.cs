@@ -46,7 +46,7 @@ public class ObjectPooler : MonoBehaviour
 
     }
 
-    public void setPooledObject(GameObject objectToPool)
+    public void SetPooledObject(GameObject objectToPool)
     {
 
         GameObject tmp;

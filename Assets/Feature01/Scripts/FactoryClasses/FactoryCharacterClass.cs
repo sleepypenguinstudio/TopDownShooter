@@ -12,7 +12,7 @@ public class FactoryCharacterClass
 
     };
 
-    public CharacterAbstractClass getCharacter(Instantiation.characterList character)
+    public CharacterAbstractClass GetCharacter(Instantiation.characterList character)
     {
     return characters[character];
     }

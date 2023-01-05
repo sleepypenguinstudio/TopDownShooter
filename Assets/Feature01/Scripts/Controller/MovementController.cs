@@ -10,7 +10,8 @@ public class MovementController : MonoBehaviour
     public bool isDashing;
     float dashingDistance = 70f;
     float dashingTime = 0.2f;
-    float dashingCooldown = 1f;
+    [SerializeField]float dashingCooldown = 1f;
+    [SerializeField] private TrailRenderer trailRenderer;
 
 
 
@@ -71,10 +72,11 @@ public class MovementController : MonoBehaviour
             Vector3 updatedDashDirection = new Vector3(dashDirection.x, 0.0f, dashDirection.y);
 
             //_rigidbody.velocity = playerTransfrom.forward*dashingDistance;
-            Debug.Log("Dash Direction: " + updatedDashDirection);
+            Debug.Log("Dashging now " );
             _rigidbody.AddForce(updatedDashDirection * dashingDistance, ForceMode.Impulse);
+            trailRenderer.emitting = true;
             yield return new WaitForSeconds(dashingTime);
-
+            trailRenderer.emitting = false;
             _rigidbody.useGravity = true;
             isDashing = false;
             yield return new WaitForSeconds(dashingCooldown);

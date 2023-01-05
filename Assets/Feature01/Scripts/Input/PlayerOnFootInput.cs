@@ -36,14 +36,14 @@ public class PlayerOnFootInput : MonoBehaviour
         playerInput.PlayerOnFoot.Movement.canceled += SetMove;
 
 
-        playerInput.PlayerOnFoot.Fire.performed += setShoot;
+        playerInput.PlayerOnFoot.Fire.performed += SetShoot;
         playerInput.PlayerOnFoot.Fire.Enable();
 
         playerInput.PlayerOnFoot.GetDirection.performed += SetDirection;
         playerInput.PlayerOnFoot.GetDirection.canceled += SetDirection;
 
 
-        playerInput.PlayerOnFoot.Dash.performed += setDash;
+        playerInput.PlayerOnFoot.Dash.performed += SetDash;
         playerInput.PlayerOnFoot.Dash.Enable();
 
 
@@ -80,16 +80,16 @@ public class PlayerOnFootInput : MonoBehaviour
         //Mouse.current.WarpCursorPosition(newPosition);
     }
 
-    private void setShoot(InputAction.CallbackContext context)
+    private void SetShoot(InputAction.CallbackContext context)
     {
         
         
-        shootSystem.playerShoot();
+        shootSystem.PlayerShoot();
         
     }
 
 
-    private void setDash(InputAction.CallbackContext context)
+    private void SetDash(InputAction.CallbackContext context)
     {
         Debug.Log("ButtonPressed");
         playerController.PlayerDash();

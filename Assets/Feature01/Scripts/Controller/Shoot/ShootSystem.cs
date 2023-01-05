@@ -18,7 +18,7 @@ public class ShootSystem : MonoBehaviour
         playerFootInput = GetComponent<PlayerOnFootInput>();
     }
 
-    public  void playerShoot()
+    public  void PlayerShoot()
     {
 
 
@@ -39,11 +39,11 @@ public class ShootSystem : MonoBehaviour
     }
 
 
-    public void selectBulletType(string bulletName)
+    public void SelectBulletType(string bulletName)//witout this
     {
 
         BulletFactoryClass bulletFactoryClass = new BulletFactoryClass();
-        BulletAbstractClasses bulletAbstractClasses = bulletFactoryClass.getBulletType(bulletName);
+        BulletAbstractClasses bulletAbstractClasses = bulletFactoryClass.GetBulletType(bulletName);
         bulletAbstractClasses.InitializeBullet(bulletGameObject);
         //ObjectPooler.SharedInstance.setPooledObject(bulletGameObject);
 

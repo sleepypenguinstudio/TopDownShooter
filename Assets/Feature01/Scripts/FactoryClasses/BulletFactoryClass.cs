@@ -11,7 +11,7 @@ public class BulletFactoryClass
         {"green",new GreenBullet()}
     };
    
-    public BulletAbstractClasses getBulletType(string bullet)
+    public BulletAbstractClasses GetBulletType(string bullet)
     {
 
         return bullets[bullet];
