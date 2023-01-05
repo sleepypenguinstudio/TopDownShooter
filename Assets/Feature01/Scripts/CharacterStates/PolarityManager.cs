@@ -18,6 +18,7 @@ public class PolarityManager : MonoBehaviour
 
 
     Dictionary<PlayerState, Stats> PlayerStatesSelection = new Dictionary<PlayerState, Stats>();
+    
    
 
 
@@ -31,10 +32,14 @@ public class PolarityManager : MonoBehaviour
         };
 
         CurrentPlayerStats = PlayerStatesSelection[PlayerState.General];
+        CurrentPlayerState = PlayerState.General;
 
         MaxHealth = CurrentPlayerStats.MaxHealth;
         MovementSpeed = CurrentPlayerStats.MovementSpeed;
+        CurrentHealth = 100f;
         PlayerColor = CurrentPlayerStats.PlayerColor;
+        ShootSystem.SelectBulletType();
+        PlayerController.SetPlayerBody();
     }
 
     
@@ -43,6 +48,8 @@ public class PolarityManager : MonoBehaviour
 
     public void SetPlayerState(PlayerState playerState)
     {
+        PlayerState OldState = CurrentPlayerState;
+        
 
         CurrentPlayerState = playerState;
         CurrentPlayerStats = PlayerStatesSelection[playerState];
@@ -51,13 +58,26 @@ public class PolarityManager : MonoBehaviour
         MaxHealth = CurrentPlayerStats.MaxHealth;
         MovementSpeed = CurrentPlayerStats.MovementSpeed;
         PlayerColor = CurrentPlayerStats.PlayerColor;
+
+        CurrentHealth = CalculateCurrentHealth(OldState,CurrentPlayerState,CurrentHealth);
         Debug.Log("CurrentMaxHealth: "+MaxHealth+"CurrentMovementSpeed"+MovementSpeed);
         ShootSystem.SelectBulletType();
         PlayerController.SetPlayerBody();
         
         
+        
 
     }
+
+
+    private float CalculateCurrentHealth(PlayerState oldState,PlayerState newState,float _currentHealth)
+    {
+        Debug.Log("BeforeHealth: "+_currentHealth);
+        float currentHealth = (_currentHealth * PlayerStatesSelection[newState].MaxHealth / PlayerStatesSelection[oldState].MaxHealth);
+        Debug.Log("CurrentHealth: "+ currentHealth);
+        return currentHealth;
+    }
+
 
     public enum PlayerState
     {
