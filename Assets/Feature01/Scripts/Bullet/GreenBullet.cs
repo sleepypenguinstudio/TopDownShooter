@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GreenBullet : BulletAbstractClasses
 {
-    Color greenColor = Color.green;
+    Color GreenColorBullet = Color.green;
     
     
     public override void InitializeBullet(GameObject bullet)
     {
-        bullet.GetComponent<MeshRenderer>().sharedMaterial.color = greenColor ;
+        bullet.GetComponent<MeshRenderer>().sharedMaterial.color = GreenColorBullet ;
         
     }
 }
