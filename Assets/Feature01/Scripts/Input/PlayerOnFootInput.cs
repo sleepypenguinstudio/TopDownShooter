@@ -146,7 +146,7 @@ public class PlayerOnFootInput : MonoBehaviour
     private void SetMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
 
-        PlayerController.movementInput = context.ReadValue<Vector2>();
+        PlayerController.MovementInput = context.ReadValue<Vector2>();
       // MoveInput=context.ReadValue<Vector2>();
     }
 

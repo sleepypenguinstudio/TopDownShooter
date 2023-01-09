@@ -6,19 +6,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody _rigidbody;
-    [SerializeField] PlayerOnFootInput playerFootInput;
-    [SerializeField] PlayerInput playerInput;
-    [SerializeField] MovementController movementController;
+    Rigidbody _Rigidbody;
+    [SerializeField] PlayerOnFootInput PlayerFootInput;
+    [SerializeField] PlayerInput PlayerInput;
+    [SerializeField] MovementController MovementController;
 
-    Transform playerTransform;
+    Transform PlayerTransform;
     
 
     Vector3 playerMoveInput;
     //Vector3 playerLookInput;
 
 
-    public Vector2 movementInput;
+    public Vector2 MovementInput;
 
     public Vector2 GetDirection;
 
@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        playerTransform = this.transform;
+        _Rigidbody = GetComponent<Rigidbody>();
+        PlayerTransform = this.transform;
      
         
     }
@@ -53,9 +53,9 @@ public class PlayerController : MonoBehaviour
        //cursorPosition = playerFootInput.getMousePosition();
        
         
-        movementController.PlayerMove(movementInput,PolarityManager.MovementSpeed,_rigidbody);
+        MovementController.PlayerMove(MovementInput,PolarityManager.MovementSpeed,_Rigidbody);
 
-        movementController.PlayerLook(GetDirection, _rigidbody, this.transform);
+        MovementController.PlayerLook(GetDirection, _Rigidbody, this.transform);
 
 
 
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerDash()
     {
       
-        StartCoroutine(movementController.Dash(_rigidbody,playerTransform,movementInput));
+        StartCoroutine(MovementController.Dash(_Rigidbody,PlayerTransform,MovementInput));
 
 
     }

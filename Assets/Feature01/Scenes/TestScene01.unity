@@ -1669,9 +1669,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4743fed789e32499b1bad3813d291b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFootInput: {fileID: 905352034}
-  movementController: {fileID: 905352042}
-  movementInput: {x: 0, y: 0}
+  PlayerFootInput: {fileID: 905352034}
+  MovementController: {fileID: 905352042}
+  MovementInput: {x: 0, y: 0}
   GetDirection: {x: 0, y: 0}
   PolarityManager: {fileID: 1305350303}
   PlayerStats: {fileID: 0}

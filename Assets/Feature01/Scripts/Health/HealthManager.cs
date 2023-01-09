@@ -5,6 +5,9 @@ using UnityEngine;
 public class HealthManager : MonoBehaviour
 {
 
+    public Stats CurrentStats;
+    public Stats PreviousStats;
+
 
     public static HealthManager Instance { get; private set; }
 
@@ -29,12 +32,18 @@ public class HealthManager : MonoBehaviour
 
 
 
-    public float CalculateCurrentHealth(PolarityManager.PlayerState oldState,PolarityManager.PlayerState newState, float _currentHealth,Dictionary<PolarityManager.PlayerState,Stats> PlayerStatesSelection)
+    public float CalculateCurrentHealth(float _currentHealth)
     {
+
+
+
+
         Debug.Log("BeforeHealth: " + _currentHealth);
-        float currentHealth = (_currentHealth * PlayerStatesSelection[newState].MaxHealth / PlayerStatesSelection[oldState].MaxHealth);
+        float currentHealth = (_currentHealth * CurrentStats.MaxHealth / PreviousStats.MaxHealth);
         Debug.Log("CurrentHealth: " + currentHealth);
         return currentHealth;
     }
+
+    
 
 }
