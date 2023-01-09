@@ -46,20 +46,20 @@ public class PolarityManager : MonoBehaviour
 
 
 
-    public void SetPlayerState(PlayerState playerState)
+    public void SetPlayerState(PlayerState playerState) // PlayerOnInput is setting the state when button is pressed using this function
     {
         PlayerState OldState = CurrentPlayerState;
         
 
-        CurrentPlayerState = playerState;
-        CurrentPlayerStats = PlayerStatesSelection[playerState];
+        CurrentPlayerState = playerState;//the enum that dictates the state
+        CurrentPlayerStats = PlayerStatesSelection[playerState];//based on the enum value of that particular state is retrieved from a dictionary. dictionary returns a scriptable object for that state
         
 
         MaxHealth = CurrentPlayerStats.MaxHealth;
         MovementSpeed = CurrentPlayerStats.MovementSpeed;
         PlayerColor = CurrentPlayerStats.PlayerColor;
 
-        CurrentHealth = CalculateCurrentHealth(OldState,CurrentPlayerState,CurrentHealth);
+        CurrentHealth = HealthManager.Instance.CalculateCurrentHealth(OldState,CurrentPlayerState,CurrentHealth,PlayerStatesSelection);
         Debug.Log("CurrentMaxHealth: "+MaxHealth+"CurrentMovementSpeed"+MovementSpeed);
         ShootSystem.SelectBulletType();
         PlayerController.SetPlayerBody();
@@ -70,13 +70,7 @@ public class PolarityManager : MonoBehaviour
     }
 
 
-    private float CalculateCurrentHealth(PlayerState oldState,PlayerState newState,float _currentHealth)
-    {
-        Debug.Log("BeforeHealth: "+_currentHealth);
-        float currentHealth = (_currentHealth * PlayerStatesSelection[newState].MaxHealth / PlayerStatesSelection[oldState].MaxHealth);
-        Debug.Log("CurrentHealth: "+ currentHealth);
-        return currentHealth;
-    }
+   
 
 
     public enum PlayerState
