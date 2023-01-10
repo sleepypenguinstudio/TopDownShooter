@@ -219,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &97662656
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1183,9 +1183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfbffd379cadf30438e3963386c0d2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObjects: []
-  amountToPool: 0
-  gameObjectToPool: {fileID: 6640326420762808880, guid: d357b36cf0bf52442bcf9386f4d6225d, type: 3}
 --- !u!4 &552741932
 Transform:
   m_ObjectHideFlags: 0
@@ -1418,7 +1415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &827996222
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2305,6 +2302,13 @@ MonoBehaviour:
   CurrentPlayerState: 0
   ShootSystem: {fileID: 905352041}
   PlayerController: {fileID: 905352033}
+  PlayerStateSelectionsList:
+  - Stats: {fileID: 11400000, guid: a2a19990e6205284eb2e6d123533d78f, type: 2}
+    PlayerState: 1
+  - Stats: {fileID: 11400000, guid: 8a84e872c3968b848a024cdf7b4d95c2, type: 2}
+    PlayerState: 0
+  - Stats: {fileID: 11400000, guid: 73e51af1d5f80564b85c21acd640a349, type: 2}
+    PlayerState: 2
 --- !u!4 &1305350304
 Transform:
   m_ObjectHideFlags: 0
@@ -2446,6 +2450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413664cecaa95234bb51c04a9217d9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentStats: {fileID: 0}
+  PreviousStats: {fileID: 0}
 --- !u!4 &1662738031
 Transform:
   m_ObjectHideFlags: 0

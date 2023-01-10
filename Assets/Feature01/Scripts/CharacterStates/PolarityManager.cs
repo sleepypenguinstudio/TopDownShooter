@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
 
 public class PolarityManager : MonoBehaviour
 {
@@ -17,21 +19,23 @@ public class PolarityManager : MonoBehaviour
     [SerializeField] PlayerController PlayerController;
 
 
-    Dictionary<PlayerState, Stats> PlayerStatesSelection = new Dictionary<PlayerState, Stats>();
+    //[SerializeField]Dictionary<PlayerState, Stats> PlayerStatesSelection = new Dictionary<PlayerState, Stats>();
+
+    [SerializeField] private List<PlayerStateSelection> PlayerStateSelectionsList;
     
    
 
 
     private void Awake()
     {
-        PlayerStatesSelection =  new Dictionary<PlayerState, Stats>()
-        {
-        {PlayerState.Ninja, Resources.Load<Stats>("ScriptableObjects/Ninja") },
-        {PlayerState.Tank, Resources.Load<Stats>("ScriptableObjects/Tank") },
-        {PlayerState.General, Resources.Load<Stats>("ScriptableObjects/General")}
-        };
+        //PlayerStatesSelection =  new Dictionary<PlayerState, Stats>()
+        //{
+        //{PlayerState.Ninja, Resources.Load<Stats>("ScriptableObjects/Ninja") },
+        //{PlayerState.Tank, Resources.Load<Stats>("ScriptableObjects/Tank") },
+        //{PlayerState.General, Resources.Load<Stats>("ScriptableObjects/General")}
+        //};
 
-        CurrentPlayerStats = PlayerStatesSelection[PlayerState.General];
+        CurrentPlayerStats = PlayerStateSelectionsList.First(r => r.PlayerState == PlayerState.General).Stats; //PlayerStatesSelection[PlayerState.General];
         CurrentPlayerState = PlayerState.General;
 
         MaxHealth = CurrentPlayerStats.MaxHealth;
@@ -51,13 +55,13 @@ public class PolarityManager : MonoBehaviour
         PlayerState OldState = CurrentPlayerState;
 
 
-        HealthManager.Instance.PreviousStats = PlayerStatesSelection[OldState];
+        HealthManager.Instance.PreviousStats = PlayerStateSelectionsList.First(r => r.PlayerState == OldState).Stats;
 
 
 
 
         CurrentPlayerState = playerState;//the enum that dictates the state
-        CurrentPlayerStats = PlayerStatesSelection[playerState];//based on the enum value of that particular state is retrieved from a dictionary. dictionary returns a scriptable object for that state
+        CurrentPlayerStats = PlayerStateSelectionsList.First(r => r.PlayerState == playerState).Stats;//based on the enum value of that particular state is retrieved from a dictionary. dictionary returns a scriptable object for that state
 
 
         HealthManager.Instance.CurrentStats = CurrentPlayerStats;
@@ -88,5 +92,15 @@ public class PolarityManager : MonoBehaviour
         Tank
     }
 
+
+}
+
+
+[Serializable]
+public class PlayerStateSelection
+{
+
+    public Stats Stats;
+    public PolarityManager.PlayerState PlayerState;
 
 }

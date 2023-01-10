@@ -4,8 +4,11 @@ using UnityEngine;
 
 
 
-public abstract class BulletAbstractClasses 
+public abstract class BulletAbstractClasses : MonoBehaviour
 {
-    
-    public abstract void InitializeBullet(GameObject bullet);
+    [SerializeField] protected Color Color;
+    public virtual void InitializeBullet()
+    {
+        GetComponent<MeshRenderer>().sharedMaterial.color = Color;
+    }
 }
