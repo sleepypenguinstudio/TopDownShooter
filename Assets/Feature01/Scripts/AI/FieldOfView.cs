@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+
+
+    public float radius;
+    public float angle;
+
+
+    public GameObject PlayerReference;
+
+    public LayerMask TargetMask;
+    public LayerMask ObstacleMask;
+
+    public bool IsPlayerVisible;
+
+    private void Start()
     {
         
     }
