@@ -4,19 +4,32 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class BulletFactoryClass 
+public class BulletFactoryClass : MonoBehaviour
 {
 
-    Dictionary<PolarityManager.PlayerState, BulletAbstractClasses> bullets = new Dictionary<PolarityManager.PlayerState, BulletAbstractClasses>()
+
+    public static BulletFactoryClass Instance { get; private set; }
+    Dictionary<PolarityManager.PlayerState, GameObject> Bullets;
+
+
+    private void Awake()
     {
-       {PolarityManager.PlayerState.Ninja, Resources.Load<GameObject>("Prefab/PurpleBullet").GetComponent<BulletAbstractClasses>()},
-       {PolarityManager.PlayerState.General,Resources.Load<GameObject>("Prefab/RedBullet").GetComponent<BulletAbstractClasses>()},
-       {PolarityManager.PlayerState.Tank,Resources.Load<GameObject>("Prefab/GreenBullet").GetComponent<BulletAbstractClasses>()}
+        Instance = this;
+
+
+        Bullets = new Dictionary<PolarityManager.PlayerState, GameObject>()
+    {
+       {PolarityManager.PlayerState.Ninja, Resources.Load<GameObject>("Prefab/PurpleBullet")},
+       {PolarityManager.PlayerState.General,Resources.Load<GameObject>("Prefab/RedBullet")},
+       {PolarityManager.PlayerState.Tank,Resources.Load<GameObject>("Prefab/GreenBullet")}
     };
+    }
+
+    
    
-    public BulletAbstractClasses GetBulletType(PolarityManager.PlayerState playerState)
+    public GameObject GetBulletType(PolarityManager.PlayerState playerState)
     {
-        return bullets[playerState];
+        return Bullets[playerState];
 
         
     }

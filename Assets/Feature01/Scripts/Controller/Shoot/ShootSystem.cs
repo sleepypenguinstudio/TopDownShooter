@@ -43,9 +43,9 @@ public class ShootSystem : MonoBehaviour
     public void SelectBulletType()//witout this
     {
 
-        BulletFactoryClass bulletFactoryClass = new BulletFactoryClass();
-        BulletAbstractClasses bulletAbstractClasses = bulletFactoryClass.GetBulletType(PolarityManager.CurrentPlayerState); //taking the currentplayer state and selecting bullet based on that 
-        bulletAbstractClasses.InitializeBullet();
+        
+        bulletGameObject = BulletFactoryClass.Instance.GetBulletType(PolarityManager.CurrentPlayerState); //taking the currentplayer state and selecting bullet based on that 
+        bulletGameObject.GetComponent<BulletAbstractClasses>().BulletProperties();
         //ObjectPooler.SharedInstance.setPooledObject(bulletGameObject);
 
 
