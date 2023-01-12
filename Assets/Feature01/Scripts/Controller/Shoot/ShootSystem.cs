@@ -19,7 +19,7 @@ public class ShootSystem : MonoBehaviour
         playerFootInput = GetComponent<PlayerOnFootInput>();
     }
 
-    public  void PlayerShoot()
+    public  void PlayerShoot(Transform SpawnPosition)
     {
 
 
@@ -34,7 +34,7 @@ public class ShootSystem : MonoBehaviour
 
 
         //Vector3 playerLookPosition = mousePosition + Vector3.up * transform.position.y;
-        GameObject firedBullet = Instantiate(bulletGameObject, spawnPoint.position,Quaternion.identity);
+        GameObject firedBullet = Instantiate(bulletGameObject, SpawnPosition.position,Quaternion.identity);
        firedBullet.GetComponent<Rigidbody>().velocity = transform.forward *bulletSpeed;
        
     }

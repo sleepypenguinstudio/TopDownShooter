@@ -16,7 +16,7 @@ public class PlayerOnFootInput : MonoBehaviour
     PlayerController PlayerController;
     ShootSystem ShootSystem;
     [SerializeField]PolarityManager PolarityManager;
-
+    [SerializeField] Transform SpawnPosition;
     [SerializeField] PlayerInput PlayerInput;
 
    
@@ -124,7 +124,7 @@ public class PlayerOnFootInput : MonoBehaviour
     {
         
         
-        ShootSystem.PlayerShoot();
+        ShootSystem.PlayerShoot(SpawnPosition);
         
     }
 
