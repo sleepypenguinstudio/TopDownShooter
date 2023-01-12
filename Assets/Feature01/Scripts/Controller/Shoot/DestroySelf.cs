@@ -18,12 +18,11 @@ public class DestroySelf : MonoBehaviour
       //  this.gameObject.SetActive(false);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    Destroy(this.gameObject);
-    //}
-
    
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(this.gameObject);
+    }
+
 }

@@ -8,7 +8,7 @@ public class MovementController : MonoBehaviour
 
     public bool canDash = true;
     public bool isDashing;
-    float dashingDistance = 70f;
+    [SerializeField]float dashingDistance = 70f;
     float dashingTime = 0.2f;
     [SerializeField]float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer trailRenderer;

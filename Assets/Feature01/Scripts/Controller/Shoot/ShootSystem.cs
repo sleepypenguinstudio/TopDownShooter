@@ -8,6 +8,7 @@ public class ShootSystem : MonoBehaviour
     [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] public GameObject bulletGameObject;
+    [SerializeField] PolarityManager PolarityManager;
 
     //Rigidbody rbBullet;
 
@@ -39,12 +40,12 @@ public class ShootSystem : MonoBehaviour
     }
 
 
-    public void SelectBulletType(string bulletName)//witout this
+    public void SelectBulletType()//witout this
     {
 
-        BulletFactoryClass bulletFactoryClass = new BulletFactoryClass();
-        BulletAbstractClasses bulletAbstractClasses = bulletFactoryClass.GetBulletType(bulletName);
-        bulletAbstractClasses.InitializeBullet(bulletGameObject);
+        
+        bulletGameObject = BulletFactoryClass.Instance.GetBulletType(PolarityManager.CurrentPlayerState); //taking the currentplayer state and selecting bullet based on that 
+        bulletGameObject.GetComponent<BulletAbstractClasses>().BulletProperties();
         //ObjectPooler.SharedInstance.setPooledObject(bulletGameObject);
 
 
