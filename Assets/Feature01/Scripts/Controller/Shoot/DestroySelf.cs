@@ -25,4 +25,8 @@ public class DestroySelf : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(this.gameObject);
+    }
 }

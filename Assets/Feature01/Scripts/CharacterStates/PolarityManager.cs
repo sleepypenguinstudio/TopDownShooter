@@ -21,7 +21,7 @@ public class PolarityManager : MonoBehaviour
 
     //[SerializeField]Dictionary<PlayerState, Stats> PlayerStatesSelection = new Dictionary<PlayerState, Stats>();
 
-    [SerializeField] private List<PlayerStateSelection> PlayerStateSelectionsList;
+    [SerializeField] public List<PlayerStateSelection> PlayerStateSelectionsList;
     
    
 
@@ -43,7 +43,7 @@ public class PolarityManager : MonoBehaviour
         CurrentHealth = MaxHealth;
         PlayerColor = CurrentPlayerStats.PlayerColor;
         ShootSystem.SelectBulletType();
-        PlayerController.SetPlayerBody();
+        PlayerController.SetPlayerBody(PlayerColor);
     }
 
     
@@ -73,8 +73,8 @@ public class PolarityManager : MonoBehaviour
 
         CurrentHealth = HealthManager.Instance.CalculateCurrentHealth(CurrentHealth);
         Debug.Log("CurrentMaxHealth: "+MaxHealth+"CurrentMovementSpeed"+MovementSpeed);
-        ShootSystem.SelectBulletType();
-        PlayerController.SetPlayerBody();
+        ShootSystem.SelectBulletType(); //setting bullet state
+        PlayerController.SetPlayerBody(PlayerColor);
         
         
         

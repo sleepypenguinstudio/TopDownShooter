@@ -11,12 +11,16 @@ public class FieldOfView : MonoBehaviour
     [Range(0, 360)]
     public float Angle;
 
-    public GameObject PlayerRef;
+    public GameObject PlayerReference;
 
     public LayerMask TargetMask;
     public LayerMask ObstructionMask;
 
     public bool IsPlayerVisible;
+
+
+
+    [SerializeField] private EnemyMovementController EnemyMovementController;
 
     private void Start()
     {
@@ -51,11 +55,7 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, DirectionToTarget, DistanceToTarget, ObstructionMask))
                 {
                     IsPlayerVisible = true;
-
-
-
-
-
+               
                 }
                 else
                 {

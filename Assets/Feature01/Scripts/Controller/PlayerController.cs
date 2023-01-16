@@ -74,9 +74,9 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void SetPlayerBody()
+    public void SetPlayerBody(Color PlayerColor)
     {
-        this.gameObject.GetComponent<MeshRenderer>().sharedMaterial.color = PolarityManager.PlayerColor;
+        this.gameObject.GetComponent<MeshRenderer>().sharedMaterial.color = PlayerColor;
     }
 
 

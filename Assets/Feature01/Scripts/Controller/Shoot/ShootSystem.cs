@@ -6,8 +6,9 @@ public class ShootSystem : MonoBehaviour
 {
     [SerializeField] float bulletSpeed = 5f;
     [SerializeField] PlayerOnFootInput playerFootInput;
-    [SerializeField] private Transform spawnPoint;
-    [SerializeField] public GameObject bulletGameObject;
+    
+    [SerializeField] public GameObject BulletGameObject;
+    [SerializeField] public GameObject EnemyBulletGameObject;
     [SerializeField] PolarityManager PolarityManager;
 
     //Rigidbody rbBullet;
@@ -34,8 +35,8 @@ public class ShootSystem : MonoBehaviour
 
 
         //Vector3 playerLookPosition = mousePosition + Vector3.up * transform.position.y;
-        GameObject firedBullet = Instantiate(bulletGameObject, SpawnPosition.position,Quaternion.identity);
-       firedBullet.GetComponent<Rigidbody>().velocity = transform.forward *bulletSpeed;
+       GameObject FiredBullet = Instantiate(BulletGameObject, SpawnPosition.position,Quaternion.identity);
+       FiredBullet.GetComponent<Rigidbody>().velocity = transform.forward *bulletSpeed;
        
     }
 
@@ -44,10 +45,44 @@ public class ShootSystem : MonoBehaviour
     {
 
         
-        bulletGameObject = BulletFactoryClass.Instance.GetBulletType(PolarityManager.CurrentPlayerState); //taking the currentplayer state and selecting bullet based on that 
-        bulletGameObject.GetComponent<BulletAbstractClasses>().BulletProperties();
+        BulletGameObject = BulletFactoryClass.Instance.GetBulletType(PolarityManager.CurrentPlayerState); //taking the currentplayer state and selecting bullet based on that 
+        BulletGameObject.GetComponent<BulletAbstractClasses>().BulletProperties();
         //ObjectPooler.SharedInstance.setPooledObject(bulletGameObject);
 
 
     }
+
+    public void EnemyShoot(Transform SpawnPosition,Transform PlayerPosition)
+    {
+        GameObject EnemyBullet = Instantiate(BulletGameObject, SpawnPosition.position, Quaternion.identity);
+
+        EnemyBullet.GetComponent<Rigidbody>().velocity = (PlayerPosition.position - SpawnPosition.position).normalized * bulletSpeed;
+
+
+    }
+
+    public void SelectEneemyBulletType()
+    {
+
+        EnemyBulletGameObject = BulletFactoryClass.Instance.GetBulletType(PolarityManager.CurrentPlayerState);
+        EnemyBulletGameObject.GetComponent<BulletAbstractClasses>().BulletProperties();
+
+
+    }
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
 }

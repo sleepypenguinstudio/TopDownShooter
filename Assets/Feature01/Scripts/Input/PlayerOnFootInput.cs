@@ -98,7 +98,7 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private void SetGeneralState(InputAction.CallbackContext context)
     {
-        PolarityManager.SetPlayerState(PolarityManager.PlayerState.General);
+        PolarityManager.SetPlayerState(PolarityManager.PlayerState.General); 
     }
 
    
