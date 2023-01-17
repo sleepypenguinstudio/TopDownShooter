@@ -8,7 +8,7 @@ public class ShootSystem : MonoBehaviour
     [SerializeField] PlayerOnFootInput playerFootInput;
     
     [SerializeField] public GameObject BulletGameObject;
-    [SerializeField] public GameObject EnemyBulletGameObject;
+    //[SerializeField] public GameObject EnemyBulletGameObject;
     [SerializeField] PolarityManager PolarityManager;
 
     //Rigidbody rbBullet;
@@ -16,8 +16,7 @@ public class ShootSystem : MonoBehaviour
 
     private void Awake()
     {
-        //rbBullet = bulletGameObject.GetComponent<Rigidbody>();
-        playerFootInput = GetComponent<PlayerOnFootInput>();
+       
     }
 
     public  void PlayerShoot(Transform SpawnPosition)
@@ -52,20 +51,22 @@ public class ShootSystem : MonoBehaviour
 
     }
 
-    public void EnemyShoot(Transform SpawnPosition,Transform PlayerPosition)
+    public void EnemyShoot(GameObject EnemyBulletGameObject, Transform SpawnPosition,Transform PlayerPosition)
     {
-        GameObject EnemyBullet = Instantiate(BulletGameObject, SpawnPosition.position, Quaternion.identity);
+        GameObject EnemyBullet = Instantiate(EnemyBulletGameObject, SpawnPosition.position, Quaternion.identity);
 
         EnemyBullet.GetComponent<Rigidbody>().velocity = (PlayerPosition.position - SpawnPosition.position).normalized * bulletSpeed;
 
 
     }
 
-    public void SelectEneemyBulletType()
+    public GameObject SelectEnemyBulletType(PolarityManager.PlayerState enemyState)
     {
 
-        EnemyBulletGameObject = BulletFactoryClass.Instance.GetBulletType(PolarityManager.CurrentPlayerState);
+        GameObject EnemyBulletGameObject = BulletFactoryClass.Instance.GetBulletType(enemyState);
         EnemyBulletGameObject.GetComponent<BulletAbstractClasses>().BulletProperties();
+        return EnemyBulletGameObject;
+
 
 
     }

@@ -7,8 +7,10 @@ using UnityEngine;
 public abstract class BulletAbstractClasses : MonoBehaviour
 {
     [SerializeField] protected Color Color;
+    
     public virtual void BulletProperties()
     {
         GetComponent<MeshRenderer>().sharedMaterial.color = Color;
+        
     }
 }

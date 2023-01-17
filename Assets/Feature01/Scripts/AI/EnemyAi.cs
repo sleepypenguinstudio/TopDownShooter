@@ -10,9 +10,9 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] ShootSystem ShootSystem;
     [SerializeField] Transform EnemybulletSpawnPosition;
     [SerializeField] Transform PlayerPosition;
-   
 
-    
+
+    [SerializeField] private EnemyState currentEnemyState;
    
 
     
@@ -25,7 +25,9 @@ public class EnemyAi : MonoBehaviour
         {
 
             this.transform.rotation = EnemyMovementController.EnemyLook(FieldOfView.PlayerReference.transform,this.transform).rotation;
-            ShootSystem.EnemyShoot(EnemybulletSpawnPosition, PlayerPosition);
+
+            
+            ShootSystem.EnemyShoot(currentEnemyState.EnemyBullet,EnemybulletSpawnPosition, PlayerPosition);
 
             
 

@@ -12,7 +12,8 @@ public class EnemyState : MonoBehaviour
     private Stats EnemyStats;
     public PolarityManager PolarityManager;
     public PolarityManager.PlayerState EnemyPlayerState;
-
+    [SerializeField] ShootSystem ShootSystem;
+    [SerializeField] public GameObject EnemyBullet;
 
 
 
@@ -24,11 +25,16 @@ public class EnemyState : MonoBehaviour
         EnemyCurrentHealth = EnemyMaxHealth;
         EnemyColor = EnemyStats.PlayerColor;
         this.gameObject.GetComponent<MeshRenderer>().sharedMaterial.color = EnemyColor;
+
     }
 
 
+    private void Start()
+    {
 
-    
+        EnemyBullet = ShootSystem.SelectEnemyBulletType(EnemyPlayerState);
+    }
+
 
 
 
