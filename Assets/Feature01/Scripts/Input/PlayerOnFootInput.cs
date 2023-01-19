@@ -25,6 +25,7 @@ public class PlayerOnFootInput : MonoBehaviour
         MainCamera = Camera.main;
         PlayerController = GetComponent<PlayerController>();
         ShootSystem =  GetComponent<ShootSystem>();
+        PolarityManager = GetComponent<PolarityManager>();
     }
 
     private void OnEnable()
@@ -124,7 +125,7 @@ public class PlayerOnFootInput : MonoBehaviour
     {
         
         
-        ShootSystem.PlayerShoot(SpawnPosition);
+        ShootSystem.PlayerShoot(SpawnPosition,transform.forward);
         
     }
 
@@ -132,7 +133,7 @@ public class PlayerOnFootInput : MonoBehaviour
     private void SetDash(InputAction.CallbackContext context)
     {
         Debug.Log("ButtonPressed");
-        PlayerController.PlayerDash();
+        PlayerController.Dash();
     }
 
    

@@ -142,3 +142,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Color: {r: 0.095196694, g: 0.0141509175, b: 1, a: 1}
+  characterAbstractController: {fileID: 0}
+  BulletState: 0

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class RedBullet : BulletAbstractClasses
 {
+    public PolarityManager.PlayerState BulletState;
     public override void BulletProperties()
     {
         base.BulletProperties();
-        GetComponent<MeshRenderer>().sharedMaterial.color = Color.red;
+        BulletState = PolarityManager.PlayerState.General;
     }
 
 }

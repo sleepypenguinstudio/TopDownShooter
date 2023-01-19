@@ -13,13 +13,14 @@ public class EnemyState : MonoBehaviour
     public PolarityManager PolarityManager;
     public PolarityManager.PlayerState EnemyPlayerState;
     [SerializeField] ShootSystem ShootSystem;
-    [SerializeField] public GameObject EnemyBullet;
+   
 
 
 
 
     private void Awake()
     {
+        PolarityManager = GetComponent<PolarityManager>();
         EnemyStats = PolarityManager.PlayerStateSelectionsList.First(r => r.PlayerState == EnemyPlayerState).Stats;
         EnemyMaxHealth = EnemyStats.MaxHealth;
         EnemyCurrentHealth = EnemyMaxHealth;
@@ -32,7 +33,7 @@ public class EnemyState : MonoBehaviour
     private void Start()
     {
 
-        EnemyBullet = ShootSystem.SelectEnemyBulletType(EnemyPlayerState);
+       ShootSystem.SelectBulletType();
     }
 
 

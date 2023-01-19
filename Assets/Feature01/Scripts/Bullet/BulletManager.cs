@@ -7,6 +7,25 @@ using System.Linq;
 public class BulletManager : MonoBehaviour
 {
     
+
+    private void OnTriggerEnter(Collider other)
+    {
+     
+        
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
 }
 
 

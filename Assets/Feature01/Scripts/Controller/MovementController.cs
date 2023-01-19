@@ -15,30 +15,22 @@ public class MovementController : MonoBehaviour
 
 
 
+    private Rigidbody _Rigidbody;
 
-   
-    Vector3 playerMoveInput;
-
-    public void PlayerMove(Vector2 movementInput, float speed,Rigidbody _rigidbody)
+    private void Awake()
     {
-        playerMoveInput = new Vector3(movementInput.x , 0.0f, movementInput.y);
-        _rigidbody.velocity = playerMoveInput*speed;
-
-        
-        
-        //_rigidbody.MovePosition(_rigidbody.position+playerMoveInput*Time.fixedDeltaTime);
-        
-      //  _rigidbody.AddForce(playerMoveInput,ForceMode.Force);
-
-
-
-
-
-
-
+        _Rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void PlayerLook(Vector2 getDirection,Rigidbody _rigidbody,Transform transform)
+   
+
+    public void Move(Vector2 movementInput, float speed)
+    {
+        Vector3 playerMoveInput = new Vector3(movementInput.x , 0.0f, movementInput.y);
+        _Rigidbody.velocity = playerMoveInput*speed;
+    }
+
+    public void Look(Vector3 getDirection)
     {
         //Vector3 playerLookPosition = getDirection + Vector3.up * transform.position.y;
         //transform.LookAt(playerLookPosition);
@@ -55,29 +47,29 @@ public class MovementController : MonoBehaviour
         targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360 * Time.deltaTime);
 
 
-        _rigidbody.MoveRotation(targetRotation);
+        _Rigidbody.MoveRotation(targetRotation);
 
 
     }
 
     
-    public IEnumerator Dash(Rigidbody _rigidbody,Transform playerTransfrom,Vector2 dashDirection)
+    public IEnumerator Dash()
     {
 
         if (canDash && !isDashing) {
 
             canDash = false;
             isDashing = true;
-            _rigidbody.useGravity = false;
-            Vector3 updatedDashDirection = new Vector3(dashDirection.x, 0.0f, dashDirection.y);
+            _Rigidbody.useGravity = false;
+            Vector3 updatedDashDirection = transform.forward;
 
             //_rigidbody.velocity = playerTransfrom.forward*dashingDistance;
             Debug.Log("Dashging now " );
-            _rigidbody.AddForce(updatedDashDirection * dashingDistance, ForceMode.Impulse);
+            _Rigidbody.AddForce(updatedDashDirection * dashingDistance, ForceMode.Impulse);
             trailRenderer.emitting = true;
             yield return new WaitForSeconds(dashingTime);
             trailRenderer.emitting = false;
-            _rigidbody.useGravity = true;
+            _Rigidbody.useGravity = true;
             isDashing = false;
             yield return new WaitForSeconds(dashingCooldown);
 

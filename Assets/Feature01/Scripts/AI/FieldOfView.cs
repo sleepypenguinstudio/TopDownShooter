@@ -20,7 +20,7 @@ public class FieldOfView : MonoBehaviour
 
 
 
-    [SerializeField] private EnemyMovementController EnemyMovementController;
+ 
 
     private void Start()
     {

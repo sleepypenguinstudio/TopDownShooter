@@ -14,9 +14,9 @@ public class PolarityManager : MonoBehaviour
     public Color PlayerColor;
     public Stats CurrentPlayerStats;
     public PlayerState CurrentPlayerState;
-
-    [SerializeField] ShootSystem ShootSystem;
-    [SerializeField] PlayerController PlayerController;
+    [SerializeField] PlayerState SelectInitialState; 
+   // [SerializeField] ShootSystem ShootSystem;
+    [SerializeField] CharacterAbstractController CharacterAbstractController;
 
 
     //[SerializeField]Dictionary<PlayerState, Stats> PlayerStatesSelection = new Dictionary<PlayerState, Stats>();
@@ -35,15 +35,18 @@ public class PolarityManager : MonoBehaviour
         //{PlayerState.General, Resources.Load<Stats>("ScriptableObjects/General")}
         //};
 
-        CurrentPlayerStats = PlayerStateSelectionsList.First(r => r.PlayerState == PlayerState.General).Stats; //PlayerStatesSelection[PlayerState.General];
-        CurrentPlayerState = PlayerState.General;
+      //  ShootSystem = GetComponent<ShootSystem>();
+        CharacterAbstractController = GetComponent<CharacterAbstractController>();
+
+        CurrentPlayerStats = PlayerStateSelectionsList.First(r => r.PlayerState == SelectInitialState).Stats; //PlayerStatesSelection[PlayerState.General];
+        CurrentPlayerState = SelectInitialState;
 
         MaxHealth = CurrentPlayerStats.MaxHealth;
         MovementSpeed = CurrentPlayerStats.MovementSpeed;
         CurrentHealth = MaxHealth;
         PlayerColor = CurrentPlayerStats.PlayerColor;
-        ShootSystem.SelectBulletType();
-        PlayerController.SetPlayerBody(PlayerColor);
+     //   ShootSystem.SelectBulletType();
+        CharacterAbstractController.SetPlayerBody(PlayerColor);
     }
 
     
@@ -73,8 +76,8 @@ public class PolarityManager : MonoBehaviour
 
         CurrentHealth = HealthManager.Instance.CalculateCurrentHealth(CurrentHealth);
         Debug.Log("CurrentMaxHealth: "+MaxHealth+"CurrentMovementSpeed"+MovementSpeed);
-        ShootSystem.SelectBulletType(); //setting bullet state
-        PlayerController.SetPlayerBody(PlayerColor);
+    //    ShootSystem.SelectBulletType(); //setting bullet state
+        CharacterAbstractController.SetPlayerBody(PlayerColor);
         
         
         
