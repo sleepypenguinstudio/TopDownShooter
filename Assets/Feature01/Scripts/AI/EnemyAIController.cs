@@ -15,6 +15,7 @@ public class EnemyAIController : CharacterAbstractController
     protected override void Awake()
     {
         base.Awake();
+        OwnerBullet = "Enemy";
         FieldOfView = GetComponent<FieldOfView>();
         ShootSystem = GetComponent<ShootSystem>();
 

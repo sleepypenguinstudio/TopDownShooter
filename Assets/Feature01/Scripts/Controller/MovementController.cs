@@ -78,8 +78,33 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    public void Dash(int i)
+    {
+
+        if (canDash && !isDashing)
+        {
+
+            canDash = false;
+            isDashing = true;
+            _Rigidbody.useGravity = false;
+            Vector3 updatedDashDirection = transform.forward;
+
+            //_rigidbody.velocity = playerTransfrom.forward*dashingDistance;
+            Debug.Log("Dashging now ");
+            _Rigidbody.AddForce(updatedDashDirection * dashingDistance, ForceMode.Impulse);
+            trailRenderer.emitting = true;
+            
+            trailRenderer.emitting = false;
+            _Rigidbody.useGravity = true;
+            isDashing = false;
+            
+
+            canDash = true;
+
+        }
+    }
 
 
 
-   
+
 }

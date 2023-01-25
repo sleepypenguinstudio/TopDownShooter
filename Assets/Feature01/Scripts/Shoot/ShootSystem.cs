@@ -9,9 +9,11 @@ public class ShootSystem : MonoBehaviour
     
     [SerializeField] public GameObject BulletGameObject;
     //[SerializeField] public GameObject EnemyBulletGameObject;
-    [SerializeField] PolarityManager PolarityManager;
+    [SerializeField] PolarityManager polarityManager;
 
-  
+    [SerializeField] LayerMask playerBulletLayer;
+    [SerializeField] LayerMask enemyBulletLayer;
+
 
 
     //Rigidbody rbBullet;
@@ -19,7 +21,7 @@ public class ShootSystem : MonoBehaviour
 
     private void Awake()
     {
-        PolarityManager = GetComponent<PolarityManager>();
+        polarityManager = GetComponent<PolarityManager>();
     }
 
     public  void PlayerShoot(Transform SpawnPosition,Vector3 DirectionToShoot)
@@ -32,8 +34,10 @@ public class ShootSystem : MonoBehaviour
 
 
        GameObject FiredBullet = Instantiate(BulletGameObject, SpawnPosition.position,Quaternion.identity);
-       FiredBullet.GetComponent<BulletAbstractClasses>().characterAbstractController = GetComponent<CharacterAbstractController>();
+      
+       FiredBullet.GetComponent<BulletAbstractClasses>().PolarityManager = GetComponent<PolarityManager>();
        FiredBullet.GetComponent<Rigidbody>().velocity = DirectionToShoot *bulletSpeed;
+       //FiredBullet.layer = GetComponent<CharacterAbstractController>().OwnerBullet == "Player" ? playerBulletLayer : enemyBulletLayer;
        
     }
 
@@ -42,7 +46,7 @@ public class ShootSystem : MonoBehaviour
     {
 
         
-        BulletGameObject = BulletFactoryClass.Instance.GetBulletType(PolarityManager.CurrentPlayerState); //taking the currentplayer state and selecting bullet based on that 
+        BulletGameObject = BulletFactoryClass.Instance.GetBulletType(polarityManager.CurrentPlayerState); //taking the currentplayer state and selecting bullet based on that 
         BulletGameObject.GetComponent<BulletAbstractClasses>().BulletProperties();
         //ObjectPooler.SharedInstance.setPooledObject(bulletGameObject);
 

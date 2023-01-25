@@ -6,6 +6,13 @@ public class StateDecision : MonoBehaviour
 {
 
 
+
+    public static StateDecision Instance { get; private set; }
+
+
+    
+
+
     Dictionary<PolarityManager.PlayerState, int> StateMaping;
 
     int[,] StateResult = new int[,] { 
@@ -20,6 +27,9 @@ public class StateDecision : MonoBehaviour
 
     private void Awake()
     {
+
+        Instance = this;
+
         StateMaping = new Dictionary<PolarityManager.PlayerState, int>() {
             { PolarityManager.PlayerState.Ninja,0 },
             {PolarityManager.PlayerState.Tank,1 },
@@ -32,10 +42,10 @@ public class StateDecision : MonoBehaviour
     public int RetrieveDamageValue(PolarityManager.PlayerState characterState,PolarityManager.PlayerState bulletState)
     {
 
-        int CharacterStateValue = StateMaping[characterState];
-        int BulletStateValue = StateMaping[bulletState];
+        int characterStateValue = StateMaping[characterState];
+        int bulletStateValue = StateMaping[bulletState];
 
-        return StateResult[CharacterStateValue,BulletStateValue];
+        return StateResult[characterStateValue,bulletStateValue];
 
 
 
