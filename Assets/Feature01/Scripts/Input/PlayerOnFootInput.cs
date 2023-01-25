@@ -91,8 +91,13 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private void SetDash(InputAction.CallbackContext context)
     {
+<<<<<<< Updated upstream
         Debug.Log("ButtonPressed");
         playerController.PlayerDash();
+=======
+        
+        PlayerController.Dash();
+>>>>>>> Stashed changes
     }
 
    

@@ -11,14 +11,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] MovementController movementController;
 
+<<<<<<< Updated upstream
     Transform playerTransform;
     
+=======
+    protected override void Awake()
+    {
+        base.Awake();
+
+        OwnerBullet = "Player";
+        
+
+    }
+>>>>>>> Stashed changes
 
     Vector3 playerMoveInput;
     //Vector3 playerLookInput;
 
 
+<<<<<<< Updated upstream
     public Vector2 movementInput;
+=======
+>>>>>>> Stashed changes
 
     public Vector2 getDirection;
    
