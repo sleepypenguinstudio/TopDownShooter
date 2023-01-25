@@ -43,6 +43,6 @@ public class BulletDamageResolver : MonoBehaviour
         
         
         
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 }
