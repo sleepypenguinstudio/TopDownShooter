@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
        //cursorPosition = playerFootInput.getMousePosition();
        
         
+<<<<<<< Updated upstream
         movementController.PlayerMove(movementInput,playerSpeed,_rigidbody);
 
         movementController.PlayerLook(getDirection, _rigidbody, this.transform);
@@ -69,9 +70,13 @@ public class PlayerController : MonoBehaviour
       
         StartCoroutine(movementController.Dash(_rigidbody,playerTransform,movementInput));
 
+=======
+       Move();
+>>>>>>> Stashed changes
 
     }
 
+<<<<<<< Updated upstream
     //public void RotatePLayer(Vector2 inputForRotation)
     // {
 
@@ -91,6 +96,14 @@ public class PlayerController : MonoBehaviour
 
     //       transform.LookAt(playerLookPosition);
     //}
+=======
+    protected override void Move()
+    {
+        
+        base.Move();
+        MovementController.PlayerMove(MovementInput,PolarityManager.MovementSpeed);
+    }
+>>>>>>> Stashed changes
 
 
 
