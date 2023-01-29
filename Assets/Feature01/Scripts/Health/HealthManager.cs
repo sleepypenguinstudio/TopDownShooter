@@ -38,7 +38,7 @@ public class HealthManager : MonoBehaviour
         Debug.Log("BeforeHealth: " + _currentHealth);
         float currentHealth = (_currentHealth * CurrentStats.MaxHealth / PreviousStats.MaxHealth);
         Debug.Log("CurrentHealth: " + currentHealth);
-        return currentHealth;
+        return Mathf.Ceil(currentHealth);
     }
 
     

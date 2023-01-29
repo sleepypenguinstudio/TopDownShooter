@@ -11,6 +11,8 @@ public class EnemyAIController : CharacterAbstractController
     [SerializeField] Transform EnemybulletSpawnPosition;
     [SerializeField] Transform PlayerPosition;
 
+    [SerializeField]float shootingInterval=1.0f;
+    float timeSinceLastShot;
 
     protected override void Awake()
     {
@@ -39,10 +41,14 @@ public class EnemyAIController : CharacterAbstractController
 
             transform.LookAt(FieldOfView.PlayerReference.transform);
 
-           
-            ShootSystem.PlayerShoot(EnemybulletSpawnPosition, PlayerPosition.position-EnemybulletSpawnPosition.position);
-          
 
+
+            timeSinceLastShot += Time.deltaTime;
+            if (timeSinceLastShot >= shootingInterval)
+            {
+                ShootSystem.PlayerShoot(EnemybulletSpawnPosition, PlayerPosition.position - EnemybulletSpawnPosition.position);
+                timeSinceLastShot = 0;
+            }
             
 
          

@@ -58,11 +58,7 @@ public class BulletDamageResolver : MonoBehaviour
 
         }
         
-        //if (damageValue < 0)
-        //{
-        //    HealthManager.Instance.AddHealth(targetState.CurrentHealth,damageValue,);
-        //}
-        
+       
         
         
         Destroy(this.gameObject);
