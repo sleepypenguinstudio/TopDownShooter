@@ -44,7 +44,7 @@ public class StateDecision : MonoBehaviour
 
         int characterStateValue = StateMaping[characterState];
         int bulletStateValue = StateMaping[bulletState];
-
+        
         return StateResult[characterStateValue,bulletStateValue];
 
 

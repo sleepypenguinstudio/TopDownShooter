@@ -285,7 +285,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 905352041}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShootSystem, Assembly-CSharp
         m_MethodName: selectBulletType
         m_Mode: 5
@@ -1490,22 +1490,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 303668675125343070, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
   m_PrefabInstance: {fileID: 303668675576641114}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &661308685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661308676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0017523d39e890f4d8012ef218ea85fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 5
-  playerFootInput: {fileID: 905352034}
-  BulletGameObject: {fileID: 6640326420762808880, guid: d357b36cf0bf52442bcf9386f4d6225d, type: 3}
-  PolarityManager: {fileID: 0}
 --- !u!114 &661308693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550,7 +1534,7 @@ MonoBehaviour:
   dashingDistance: 70
   dashingCooldown: 1
   trailRenderer: {fileID: 0}
---- !u!114 &661308695
+--- !u!114 &661308702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1559,13 +1543,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 661308676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9624077b2cde9f643a0120036de99a4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 77797aeafdebf964ab43a43cccf4841e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementController: {fileID: 0}
-  PolarityManager: {fileID: 0}
-  CharacterStats: {fileID: 0}
-  CharacterRenderer: {fileID: 0}
+  bulletSpeed: 5
+  BulletGameObject: {fileID: 0}
+  polarityManager: {fileID: 0}
+  playerBulletLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  enemyBulletLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!1 &730768016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 730768018}
+  - component: {fileID: 730768017}
+  m_Layer: 0
+  m_Name: StateDecision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &730768017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730768016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8927530513385442859aa39bc5110bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &730768018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730768016}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2599216, y: 12.618582, z: -31.24803}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &827996221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,7 +1683,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 905352041}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShootSystem, Assembly-CSharp
         m_MethodName: selectBulletType
         m_Mode: 5
@@ -1813,13 +1846,13 @@ GameObject:
   - component: {fileID: 905352034}
   - component: {fileID: 905352033}
   - component: {fileID: 905352040}
-  - component: {fileID: 905352041}
   - component: {fileID: 905352042}
   - component: {fileID: 905352043}
   - component: {fileID: 905352044}
+  - component: {fileID: 905352045}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1836,14 +1869,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4743fed789e32499b1bad3813d291b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementController: {fileID: 905352042}
-  PolarityManager: {fileID: 0}
+  movementController: {fileID: 0}
+  PolarityManager: {fileID: 905352044}
   CharacterStats: {fileID: 0}
   CharacterRenderer: {fileID: 0}
-  PlayerFootInput: {fileID: 905352034}
-  MovementInput: {x: 0, y: 0}
-  GetDirection: {x: 0, y: 0}
-  PlayerStats: {fileID: 0}
+  OwnerBullet: 
+  playerFootInput: {fileID: 0}
+  movementInput: {x: 0, y: 0}
+  getDirection: {x: 0, y: 0}
+  playerSpeed: 30
 --- !u!114 &905352034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,8 +1890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2e0ec6ac27f2c4e80fd7cbbc5a5635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PolarityManager: {fileID: 0}
-  SpawnPosition: {fileID: 413011840}
+  polarityManager: {fileID: 0}
+  spawnPosition: {fileID: 413011840}
 --- !u!54 &905352035
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1986,22 +2020,6 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerOnFoot
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &905352041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 905352032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0017523d39e890f4d8012ef218ea85fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 50
-  playerFootInput: {fileID: 905352034}
-  BulletGameObject: {fileID: 6640326420762808880, guid: d357b36cf0bf52442bcf9386f4d6225d, type: 3}
-  PolarityManager: {fileID: 0}
 --- !u!114 &905352042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2154,6 +2172,27 @@ MonoBehaviour:
     PlayerState: 0
   - Stats: {fileID: 11400000, guid: 73e51af1d5f80564b85c21acd640a349, type: 2}
     PlayerState: 2
+--- !u!114 &905352045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905352032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77797aeafdebf964ab43a43cccf4841e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 50
+  BulletGameObject: {fileID: 0}
+  polarityManager: {fileID: 0}
+  playerBulletLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  enemyBulletLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &1059141785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,22 +2411,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 303668675125343070, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
   m_PrefabInstance: {fileID: 1665423568}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1170062450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170062449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9624077b2cde9f643a0120036de99a4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MovementController: {fileID: 0}
-  PolarityManager: {fileID: 0}
-  CharacterStats: {fileID: 0}
-  CharacterRenderer: {fileID: 0}
 --- !u!114 &1170062451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2432,7 +2455,12 @@ MonoBehaviour:
     PlayerState: 0
   - Stats: {fileID: 11400000, guid: 73e51af1d5f80564b85c21acd640a349, type: 2}
     PlayerState: 2
---- !u!114 &1170062453
+--- !u!23 &1170062457 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 303668675125343069, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+  m_PrefabInstance: {fileID: 1665423568}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1170062463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2441,18 +2469,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1170062449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0017523d39e890f4d8012ef218ea85fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 77797aeafdebf964ab43a43cccf4841e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 5
-  playerFootInput: {fileID: 905352034}
-  BulletGameObject: {fileID: 6640326420762808880, guid: d357b36cf0bf52442bcf9386f4d6225d, type: 3}
-  PolarityManager: {fileID: 0}
---- !u!23 &1170062457 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 303668675125343069, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
-  m_PrefabInstance: {fileID: 1665423568}
-  m_PrefabAsset: {fileID: 0}
+  BulletGameObject: {fileID: 0}
+  polarityManager: {fileID: 0}
+  playerBulletLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  enemyBulletLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &1227806523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2703,7 +2731,7 @@ PrefabInstance:
     - target: {fileID: 303668675125343057, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
       propertyPath: ShootSystem
       value: 
-      objectReference: {fileID: 1170062453}
+      objectReference: {fileID: 0}
     - target: {fileID: 303668675125343057, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
       propertyPath: PlayerPosition
       value: 
@@ -2760,18 +2788,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 303668675125343062, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 303668675125343062, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
-      propertyPath: ShootSystem
-      value: 
-      objectReference: {fileID: 1170062453}
-    - target: {fileID: 303668675125343062, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
-      propertyPath: PolarityManager
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 303668675125343069, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2780,13 +2796,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 303668675125343070, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 303668675125343070, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 303668675125343071, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
       propertyPath: PlayerReference
       value: 
       objectReference: {fileID: 905352032}
-    m_RemovedComponents:
-    - {fileID: 303668675125343056, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
-    - {fileID: 303668675125343062, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+    - target: {fileID: 303668676251061836, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 303668676583513595, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
 --- !u!1001 &303668675576641114
 PrefabInstance:
@@ -2798,7 +2828,7 @@ PrefabInstance:
     - target: {fileID: 303668675125343057, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
       propertyPath: ShootSystem
       value: 
-      objectReference: {fileID: 661308685}
+      objectReference: {fileID: 0}
     - target: {fileID: 303668675125343057, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
       propertyPath: PlayerPosition
       value: 
@@ -2851,27 +2881,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 303668675125343062, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 303668675125343062, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
-      propertyPath: ShootSystem
-      value: 
-      objectReference: {fileID: 661308685}
-    - target: {fileID: 303668675125343062, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
-      propertyPath: PolarityManager
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 303668675125343070, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
       propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 303668675125343070, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 303668675125343070, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+      propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 303668675125343071, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
       propertyPath: PlayerReference
       value: 
       objectReference: {fileID: 905352032}
+    - target: {fileID: 303668676251061836, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 303668676583513595, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 303668675125343056, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
-    - {fileID: 303668675125343062, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e7d73000e33f91e49bb95f455aaa3af2, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShootSystem : MonoBehaviour
 {
     [SerializeField] float bulletSpeed = 5f;
-    [SerializeField] PlayerOnFootInput playerFootInput;
+ 
     
     [SerializeField] public GameObject BulletGameObject;
     //[SerializeField] public GameObject EnemyBulletGameObject;
@@ -13,6 +13,7 @@ public class ShootSystem : MonoBehaviour
 
     [SerializeField] LayerMask playerBulletLayer;
     [SerializeField] LayerMask enemyBulletLayer;
+    
 
 
 
@@ -22,6 +23,9 @@ public class ShootSystem : MonoBehaviour
     private void Awake()
     {
         polarityManager = GetComponent<PolarityManager>();
+        
+
+        
     }
 
     public  void PlayerShoot(Transform SpawnPosition,Vector3 DirectionToShoot)
@@ -37,7 +41,8 @@ public class ShootSystem : MonoBehaviour
       
        FiredBullet.GetComponent<BulletAbstractClasses>().PolarityManager = GetComponent<PolarityManager>();
        FiredBullet.GetComponent<Rigidbody>().velocity = DirectionToShoot *bulletSpeed;
-       //FiredBullet.layer = GetComponent<CharacterAbstractController>().OwnerBullet == "Player" ? playerBulletLayer : enemyBulletLayer;
+       FiredBullet.layer = GetComponent<CharacterAbstractController>().OwnerBullet == "Player" ? 10 : 11;
+        
        
     }
 

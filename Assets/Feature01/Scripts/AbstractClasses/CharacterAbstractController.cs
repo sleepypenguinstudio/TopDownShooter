@@ -4,7 +4,7 @@ public class CharacterAbstractController : MonoBehaviour
 {
     protected Rigidbody _Rigidbody;
 
-    [SerializeField] protected MovementController MovementController;
+    [SerializeField] protected MovementController movementController;
     [SerializeField] protected PolarityManager PolarityManager;
 
     public Stats CharacterStats;
@@ -16,7 +16,7 @@ public class CharacterAbstractController : MonoBehaviour
     protected virtual void Awake()
     {
         _Rigidbody = GetComponent<Rigidbody>();
-        MovementController = GetComponent<MovementController>();
+        movementController = GetComponent<MovementController>();
         PolarityManager = GetComponent<PolarityManager>();
         CharacterRenderer = GetComponent<MeshRenderer>();
     
@@ -35,7 +35,7 @@ public class CharacterAbstractController : MonoBehaviour
     public void Dash()
     {
         Debug.Log("Button");
-        MovementController.Dash();
+        movementController.Dash();
 
 
     }

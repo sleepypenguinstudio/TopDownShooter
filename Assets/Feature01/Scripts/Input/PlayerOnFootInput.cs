@@ -8,43 +8,61 @@ using UnityEngine.InputSystem;
 public class PlayerOnFootInput : MonoBehaviour
 {
     public Vector2 MoveInput { get; private set; }
-   
-    
 
-    private Camera mainCamera;
+
+
+    private Camera MainCamera;
 
     PlayerController playerController;
     ShootSystem shootSystem;
-
+    [SerializeField] PolarityManager polarityManager;
+    [SerializeField] Transform spawnPosition;
     [SerializeField] PlayerInput playerInput;
 
-   
+
     private void Awake()
     {
-        mainCamera = Camera.main;
+        MainCamera = Camera.main;
         playerController = GetComponent<PlayerController>();
-        shootSystem =  GetComponent<ShootSystem>();
+        shootSystem = GetComponent<ShootSystem>();
+        polarityManager = GetComponent<PolarityManager>();
     }
 
     private void OnEnable()
     {
-        
+
         playerInput = new PlayerInput();
         playerInput.PlayerOnFoot.Enable();
 
         playerInput.PlayerOnFoot.Movement.performed += SetMove;
         playerInput.PlayerOnFoot.Movement.canceled += SetMove;
 
-
-        playerInput.PlayerOnFoot.Fire.performed += SetShoot;
-        playerInput.PlayerOnFoot.Fire.Enable();
-
         playerInput.PlayerOnFoot.GetDirection.performed += SetDirection;
         playerInput.PlayerOnFoot.GetDirection.canceled += SetDirection;
 
 
+
+        playerInput.PlayerOnFoot.Fire.performed += SetShoot;
+        playerInput.PlayerOnFoot.Fire.Enable();
+
+
+
+
         playerInput.PlayerOnFoot.Dash.performed += SetDash;
         playerInput.PlayerOnFoot.Dash.Enable();
+
+        playerInput.PlayerOnFoot.General.performed += SetGeneralState;
+        playerInput.PlayerOnFoot.General.Enable();
+
+
+        playerInput.PlayerOnFoot.Ninja.performed += SetNinjaState;
+        playerInput.PlayerOnFoot.Ninja.Enable();
+
+
+        playerInput.PlayerOnFoot.Tank.performed += SetTankState;
+        playerInput.PlayerOnFoot.Tank.Enable();
+
+
 
 
     }
@@ -60,8 +78,31 @@ public class PlayerOnFootInput : MonoBehaviour
         playerInput.PlayerOnFoot.Fire.Disable();
         playerInput.PlayerOnFoot.Dash.Disable();
 
+        playerInput.PlayerOnFoot.General.Disable();
+        playerInput.PlayerOnFoot.Ninja.Disable();
+        playerInput.PlayerOnFoot.Tank.Disable();
+
         playerInput.PlayerOnFoot.Disable();
     }
+
+
+
+    private void SetTankState(InputAction.CallbackContext context)
+    {
+        polarityManager.SetPlayerState(PolarityManager.PlayerState.Tank);
+    }
+
+    private void SetNinjaState(InputAction.CallbackContext context)
+    {
+        polarityManager.SetPlayerState(PolarityManager.PlayerState.Ninja);
+    }
+
+    private void SetGeneralState(InputAction.CallbackContext context)
+    {
+        polarityManager.SetPlayerState(PolarityManager.PlayerState.General);
+    }
+
+
 
 
 
@@ -70,7 +111,7 @@ public class PlayerOnFootInput : MonoBehaviour
     private void SetDirection(InputAction.CallbackContext context)
     {
         playerController.getDirection = context.ReadValue<Vector2>();
-      
+
 
 
 
@@ -82,25 +123,20 @@ public class PlayerOnFootInput : MonoBehaviour
 
     private void SetShoot(InputAction.CallbackContext context)
     {
-        
-        
-        shootSystem.PlayerShoot();
-        
+
+
+        shootSystem.PlayerShoot(spawnPosition, transform.forward);
+
     }
 
 
     private void SetDash(InputAction.CallbackContext context)
     {
-<<<<<<< Updated upstream
         Debug.Log("ButtonPressed");
-        playerController.PlayerDash();
-=======
-        
-        PlayerController.Dash();
->>>>>>> Stashed changes
+        playerController.Dash();
     }
 
-   
+
 
 
 
@@ -112,10 +148,10 @@ public class PlayerOnFootInput : MonoBehaviour
     {
 
         playerController.movementInput = context.ReadValue<Vector2>();
-      // MoveInput=context.ReadValue<Vector2>();
+        // MoveInput=context.ReadValue<Vector2>();
     }
 
-   
+
 
     //public Vector3 getMousePosition()
     //{
@@ -124,11 +160,11 @@ public class PlayerOnFootInput : MonoBehaviour
 
     //    Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x,mousePosition.y,mainCamera.transform.position.y));
 
-        
+
     //    return mouseWorldPosition;
 
     //}
 
 
-   
+
 }

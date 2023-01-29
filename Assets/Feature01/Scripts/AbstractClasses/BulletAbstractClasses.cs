@@ -4,12 +4,12 @@ using UnityEngine;
 
 
 
-public abstract class BulletAbstractClasses 
+public abstract class BulletAbstractClasses : MonoBehaviour
 {
-<<<<<<< Updated upstream
+
     
-    public abstract void InitializeBullet(GameObject bullet);
-=======
+   
+
     [SerializeField] protected Color Color;
 
     public CharacterAbstractController CharacterAbstractController;
@@ -29,5 +29,4 @@ public abstract class BulletAbstractClasses
 
 
 
->>>>>>> Stashed changes
 }

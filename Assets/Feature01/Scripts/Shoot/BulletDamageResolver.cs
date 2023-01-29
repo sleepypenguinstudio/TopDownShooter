@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletDamageResolver : MonoBehaviour
 {
     [SerializeField] float destroyAfterTime =5f;
+    
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -18,7 +19,10 @@ public class BulletDamageResolver : MonoBehaviour
       //  this.gameObject.SetActive(false);
     }
 
-   
+    private void Awake()
+    {
+        
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -28,14 +32,32 @@ public class BulletDamageResolver : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        {
+
+            PolarityManager targetState = other.gameObject.GetComponent<PolarityManager>();
+            PolarityManager bulletState = this.gameObject.GetComponent<BulletAbstractClasses>().PolarityManager;
+
+
+            int damageValue = StateDecision.Instance.RetrieveDamageValue(targetState.CurrentPlayerState, bulletState.CurrentPlayerState);
+
+           
+
+
+            targetState.CurrentHealth = damageValue < 0 ? HealthManager.Instance.DamageHealth(targetState.CurrentHealth, -damageValue) : HealthManager.Instance.AddHealth(targetState.CurrentHealth, damageValue,targetState.MaxHealth); //based on the damageValue, it is adding or decreasing the health of the object the bullet hit. target state is the currentstate of the object that bullet hit.
+
+           
+            
+            Debug.Log("Player Current Health: "+targetState.CurrentHealth);
+
+
+         
+
+
+            Debug.Log("Damage Value: "+damageValue);
+
+        }
         
-
-        PolarityManager targetState = other.gameObject.GetComponent<PolarityManager>();
-        PolarityManager bulletState = this.gameObject.GetComponent<BulletAbstractClasses>().PolarityManager;
-
-
-        int damageValue = StateDecision.Instance.RetrieveDamageValue(targetState.CurrentPlayerState,bulletState.CurrentPlayerState);
-
         //if (damageValue < 0)
         //{
         //    HealthManager.Instance.AddHealth(targetState.CurrentHealth,damageValue,);

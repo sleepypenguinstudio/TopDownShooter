@@ -13,9 +13,7 @@ GameObject:
   - component: {fileID: 303668675125343069}
   - component: {fileID: 303668675125343068}
   - component: {fileID: 303668675125343071}
-  - component: {fileID: 303668675125343056}
   - component: {fileID: 303668675125343057}
-  - component: {fileID: 303668675125343062}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -126,19 +124,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   IsPlayerVisible: 0
-  EnemyMovementController: {fileID: 303668675125343056}
---- !u!114 &303668675125343056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303668675125343070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 576a8ce3a11714040820daafcd3b8608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &303668675125343057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,30 +136,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c548e64dd9d9c45aa773e2b80f1bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementController: {fileID: 0}
+  PolarityManager: {fileID: 0}
+  CharacterStats: {fileID: 0}
+  CharacterRenderer: {fileID: 0}
+  OwnerBullet: 
   FieldOfView: {fileID: 303668675125343071}
-  EnemyMovementController: {fileID: 303668675125343056}
   ShootSystem: {fileID: 0}
   EnemybulletSpawnPosition: {fileID: 303668676583513592}
   PlayerPosition: {fileID: 0}
---- !u!114 &303668675125343062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303668675125343070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58164469e3d183044a09c1a50bf307ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyMaxHealth: 0
-  EnemyCurrentHealth: 0
-  EnemyMovementSpeed: 0
-  EnemyColor: {r: 0, g: 0, b: 0, a: 0}
-  PolarityManager: {fileID: 0}
-  EnemyPlayerState: 2
-  ShootSystem: {fileID: 0}
 --- !u!1 &303668676251061836
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,35 +4,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterAbstractController
 {
     Rigidbody _rigidbody;
     [SerializeField] PlayerOnFootInput playerFootInput;
     [SerializeField] PlayerInput playerInput;
-    [SerializeField] MovementController movementController;
+   
 
-<<<<<<< Updated upstream
+
     Transform playerTransform;
     
-=======
+
     protected override void Awake()
     {
         base.Awake();
+        playerFootInput = GetComponent<PlayerOnFootInput>();
 
         OwnerBullet = "Player";
         
 
     }
->>>>>>> Stashed changes
+
 
     Vector3 playerMoveInput;
     //Vector3 playerLookInput;
 
 
-<<<<<<< Updated upstream
+
     public Vector2 movementInput;
-=======
->>>>>>> Stashed changes
+
+
 
     public Vector2 getDirection;
    
@@ -42,15 +43,8 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] float playerSpeed = 30.0f;
-   
 
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-        playerTransform = this.transform;
-     
-        
-    }
+   
 
 
     private void FixedUpdate()
@@ -66,25 +60,19 @@ public class PlayerController : MonoBehaviour
        //cursorPosition = playerFootInput.getMousePosition();
        
         
-        movementController.PlayerMove(movementInput,playerSpeed,_rigidbody);
+        movementController.Move(movementInput,playerSpeed);
 
-        movementController.PlayerLook(getDirection, _rigidbody, this.transform);
-
-
+        movementController.Look(getDirection);
 
 
 
-    }
-
-
-
-    public void PlayerDash()
-    {
-      
-        StartCoroutine(movementController.Dash(_rigidbody,playerTransform,movementInput));
 
 
     }
+
+
+
+    
 
     //public void RotatePLayer(Vector2 inputForRotation)
     // {

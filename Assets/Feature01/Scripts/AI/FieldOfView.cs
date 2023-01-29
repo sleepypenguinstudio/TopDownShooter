@@ -13,7 +13,7 @@ public class FieldOfView : MonoBehaviour
 
     public GameObject PlayerReference;
 
-    public LayerMask TargetMask;
+    public LayerMask TargetMask; // set this TargetMask to detect Player, assign it to player
     public LayerMask ObstructionMask;
 
     public bool IsPlayerVisible;
