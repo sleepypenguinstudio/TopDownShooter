@@ -24,11 +24,7 @@ public class CharacterAbstractController : MonoBehaviour
 
 
 
-    void GetCurrentState()
-    {
-
-    }
-
+    
 
 
 
@@ -47,7 +43,16 @@ public class CharacterAbstractController : MonoBehaviour
         CharacterRenderer.material.color = playerColor;
     }
 
+    protected virtual void Move()
+    {
 
+
+    }
+
+    protected virtual void Look()
+    {
+
+    }
 
 
 }

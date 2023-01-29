@@ -30,7 +30,7 @@ public class MovementController : MonoBehaviour
         _Rigidbody.velocity = playerMoveInput*speed;
     }
 
-    public void Look(Vector3 getDirection)
+    public void PlayerLook(Vector3 getDirection)
     {
         //Vector3 playerLookPosition = getDirection + Vector3.up * transform.position.y;
         //transform.LookAt(playerLookPosition);

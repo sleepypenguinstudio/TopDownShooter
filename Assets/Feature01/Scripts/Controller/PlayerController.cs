@@ -19,7 +19,7 @@ public class PlayerController : CharacterAbstractController
     {
         base.Awake();
         playerFootInput = GetComponent<PlayerOnFootInput>();
-
+       
         OwnerBullet = "Player";
         
 
@@ -31,7 +31,7 @@ public class PlayerController : CharacterAbstractController
 
 
 
-    public Vector2 movementInput;
+    public Vector2 MovementInput;
 
 
 
@@ -42,7 +42,7 @@ public class PlayerController : CharacterAbstractController
 
 
 
-    [SerializeField] float playerSpeed = 30.0f;
+   // [SerializeField] float playerSpeed = 30.0f;
 
    
 
@@ -61,16 +61,20 @@ public class PlayerController : CharacterAbstractController
        
         
        Move();
-
+       Look();
     }
 
     protected override void Move()
     {
         
         base.Move();
-        MovementController.PlayerMove(MovementInput,PolarityManager.MovementSpeed);
+        movementController.PlayerMove(MovementInput,PolarityManager.MovementSpeed);
     }
 
-
+    protected override void Look()
+    {
+        base.Look();
+        movementController.PlayerLook(getDirection);
+    }
 
 }
