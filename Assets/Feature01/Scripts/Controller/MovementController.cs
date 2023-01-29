@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour
 
    
 
-    public void Move(Vector2 movementInput, float speed)
+    public void PlayerMove(Vector2 movementInput, float speed)
     {
         Vector3 playerMoveInput = new Vector3(movementInput.x , 0.0f, movementInput.y);
         _Rigidbody.velocity = playerMoveInput*speed;
