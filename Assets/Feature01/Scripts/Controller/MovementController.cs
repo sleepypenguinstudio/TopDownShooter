@@ -19,11 +19,7 @@ public class MovementController : MonoBehaviour
    
     Vector3 playerMoveInput;
 
-<<<<<<< Updated upstream
-    public void PlayerMove(Vector2 movementInput, float speed,Rigidbody _rigidbody)
-=======
     public void PlayerMove(Vector2 movementInput, float speed)
->>>>>>> Stashed changes
     {
         playerMoveInput = new Vector3(movementInput.x , 0.0f, movementInput.y);
         _rigidbody.velocity = playerMoveInput*speed;
