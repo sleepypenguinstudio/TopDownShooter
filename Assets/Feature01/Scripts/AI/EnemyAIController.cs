@@ -6,15 +6,16 @@ public class EnemyAIController : CharacterAbstractController
 {
 
     [SerializeField] private FieldOfView FieldOfView;
-    
+
     [SerializeField] ShootSystem ShootSystem;
     [SerializeField] Transform EnemybulletSpawnPosition;
     [SerializeField] Transform PlayerPosition;
     NavMeshAgent agent;
     [SerializeField] Transform centrePoint;
     [SerializeField] float range;
-    [SerializeField]float shootingInterval=1.0f;
+    [SerializeField] float shootingInterval = 1.0f;
     float timeSinceLastShot;
+
 
     protected override void Awake()
     {
@@ -34,7 +35,7 @@ public class EnemyAIController : CharacterAbstractController
     void Update()
     {
 
-        if (FieldOfView.IsPlayerVisible)
+        if (FieldOfView.canSeePlayer)
         {
 
             //  this.transform.rotation = EnemyMovementController.EnemyLook(FieldOfView.PlayerReference.transform,this.transform).rotation;
@@ -52,7 +53,7 @@ public class EnemyAIController : CharacterAbstractController
                 ShootSystem.PlayerShoot(EnemybulletSpawnPosition, PlayerPosition.position - EnemybulletSpawnPosition.position);
                 timeSinceLastShot = 0;
             }
-            
+
 
 
 
@@ -60,14 +61,14 @@ public class EnemyAIController : CharacterAbstractController
 
 
 
-        
-       
 
-         
+
+
+
         }
 
 
-         else
+        else
         {
 
             Move();
@@ -77,7 +78,7 @@ public class EnemyAIController : CharacterAbstractController
 
 
 
-        
+
     }
 
 
@@ -85,7 +86,7 @@ public class EnemyAIController : CharacterAbstractController
     protected override void Look()
     {
         base.Look();
-        transform.LookAt(FieldOfView.PlayerReference.transform);
+        transform.LookAt(FieldOfView.playerRef.transform);
     }
 
 
@@ -109,17 +110,17 @@ public class EnemyAIController : CharacterAbstractController
 
     public void Move(Transform playerPosition)
     {
-         if (agent.remainingDistance <= agent.stoppingDistance) //done with path
-        {
-            
-           // if (RandomPoint(CentrePoint.position, Range, out point)) //pass in our centre point and radius of area
-            //{
-                //Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                Vector3 UpdatedPlayerPosition = new Vector3(playerPosition.position.x - 5f, playerPosition.position.y, playerPosition.position.z);
-                agent.SetDestination(UpdatedPlayerPosition); //need update for main game 
-            //}
-        }
-        
+        //  if (agent.remainingDistance <= agent.stoppingDistance) //done with path
+        //{
+
+        // if (RandomPoint(CentrePoint.position, Range, out point)) //pass in our centre point and radius of area
+        //{
+        //Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
+        Vector3 UpdatedPlayerPosition = new Vector3(playerPosition.position.x - Random.Range(3f, 8f), playerPosition.position.y, playerPosition.position.z - Random.Range(3f, 8f));
+        agent.SetDestination(UpdatedPlayerPosition); //need update for main game 
+                                                     //}
+                                                     //}
+
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
@@ -141,17 +142,17 @@ public class EnemyAIController : CharacterAbstractController
 
 
 
-            
-
-  
 
 
 
 
 
-    }
 
-    
+
+
+}
+
+
 
 
 
