@@ -62,6 +62,7 @@ public class PlayerController : CharacterAbstractController
         
        Move();
        Look();
+      
     }
 
     protected override void Move()

@@ -1732,12 +1732,8 @@ MonoBehaviour:
   bulletSpeed: 5
   BulletGameObject: {fileID: 0}
   polarityManager: {fileID: 0}
-  playerBulletLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  enemyBulletLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  playerBulletLayer: 10
+  enemyBulletLayer: 11
 --- !u!195 &661308703
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2739,12 +2735,8 @@ MonoBehaviour:
   bulletSpeed: 50
   BulletGameObject: {fileID: 0}
   polarityManager: {fileID: 0}
-  playerBulletLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  enemyBulletLayer:
-    serializedVersion: 2
-    m_Bits: 2048
+  playerBulletLayer: 10
+  enemyBulletLayer: 11
 --- !u!1 &1059141785
 GameObject:
   m_ObjectHideFlags: 0
@@ -3110,12 +3102,8 @@ MonoBehaviour:
   bulletSpeed: 5
   BulletGameObject: {fileID: 0}
   polarityManager: {fileID: 0}
-  playerBulletLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  enemyBulletLayer:
-    serializedVersion: 2
-    m_Bits: 2048
+  playerBulletLayer: 10
+  enemyBulletLayer: 11
 --- !u!195 &1170062464
 NavMeshAgent:
   m_ObjectHideFlags: 0

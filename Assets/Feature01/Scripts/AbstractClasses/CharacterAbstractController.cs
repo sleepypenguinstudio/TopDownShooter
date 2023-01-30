@@ -31,7 +31,7 @@ public class CharacterAbstractController : MonoBehaviour
     public void Dash()
     {
         Debug.Log("Button");
-        movementController.Dash();
+        StartCoroutine(movementController.Dash());
 
 
     }
