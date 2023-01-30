@@ -11,8 +11,8 @@ public class ShootSystem : MonoBehaviour
     //[SerializeField] public GameObject EnemyBulletGameObject;
     [SerializeField] PolarityManager polarityManager;
 
-    [SerializeField] LayerMask playerBulletLayer;
-    [SerializeField] LayerMask enemyBulletLayer;
+    [SerializeField] int playerBulletLayer;
+    [SerializeField] int enemyBulletLayer;
     
 
 
@@ -37,11 +37,13 @@ public class ShootSystem : MonoBehaviour
         SelectBulletType();
 
 
+
+
        GameObject FiredBullet = Instantiate(BulletGameObject, SpawnPosition.position,Quaternion.identity);
       
        FiredBullet.GetComponent<BulletAbstractClasses>().PolarityManager = GetComponent<PolarityManager>();
        FiredBullet.GetComponent<Rigidbody>().velocity = DirectionToShoot *bulletSpeed;
-       FiredBullet.layer = GetComponent<CharacterAbstractController>().OwnerBullet == "Player" ? 10 : 11;
+       FiredBullet.layer = GetComponent<CharacterAbstractController>().OwnerBullet == "Player" ? playerBulletLayer : enemyBulletLayer;
         
        
     }

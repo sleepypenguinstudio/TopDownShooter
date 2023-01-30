@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 175294252}
   - component: {fileID: 175294251}
   - component: {fileID: 175294250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 345271167}
   - component: {fileID: 345271166}
   - component: {fileID: 345271165}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1583,7 +1583,7 @@ GameObject:
   - component: {fileID: 633117226}
   - component: {fileID: 633117225}
   - component: {fileID: 633117224}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1732,12 +1732,8 @@ MonoBehaviour:
   bulletSpeed: 5
   BulletGameObject: {fileID: 0}
   polarityManager: {fileID: 0}
-  playerBulletLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  enemyBulletLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  playerBulletLayer: 10
+  enemyBulletLayer: 11
 --- !u!195 &661308703
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2116,7 +2112,7 @@ GameObject:
   - component: {fileID: 895110742}
   - component: {fileID: 895110741}
   - component: {fileID: 895110740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2557,12 +2553,8 @@ MonoBehaviour:
   bulletSpeed: 50
   BulletGameObject: {fileID: 0}
   polarityManager: {fileID: 0}
-  playerBulletLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  enemyBulletLayer:
-    serializedVersion: 2
-    m_Bits: 2048
+  playerBulletLayer: 10
+  enemyBulletLayer: 11
 --- !u!1 &1059141785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2845,12 +2837,8 @@ MonoBehaviour:
   bulletSpeed: 5
   BulletGameObject: {fileID: 0}
   polarityManager: {fileID: 0}
-  playerBulletLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  enemyBulletLayer:
-    serializedVersion: 2
-    m_Bits: 2048
+  playerBulletLayer: 10
+  enemyBulletLayer: 11
 --- !u!195 &1170062464
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2885,7 +2873,7 @@ GameObject:
   - component: {fileID: 1227806526}
   - component: {fileID: 1227806525}
   - component: {fileID: 1227806524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
