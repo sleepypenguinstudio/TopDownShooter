@@ -7,69 +7,121 @@ public class FieldOfView : MonoBehaviour
 
 
 
-    public float Radius;
+    public float radius;
     [Range(0, 360)]
-    public float Angle;
+    public float angle;
+    [Range(0, 360)]
+    public float soundRadious;
+    public float soundRange;
 
-    public GameObject PlayerReference;
+    public GameObject playerRef;
+    // public GameObject glassWall;
 
-    public LayerMask TargetMask; // set this TargetMask to detect Player, assign it to player
-    public LayerMask ObstructionMask;
-
-    public bool IsPlayerVisible;
-
+    public Light spotLight;
+    Color color1;
 
 
- 
+    public LayerMask targetMask;
+    public LayerMask obstructionMask;
+
+    public bool canSeePlayer;
+    public bool canHearPlayer;
+    public Renderer soundArea;
+
 
     private void Start()
     {
-        
+
+        // StartCoroutine(FOVRoutine());
+        playerRef = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
     }
 
+    private void Update()
+    {
+
+        ColorUtility.TryParseHtmlString("#00FF00", out color1);
+
+
+        if (canSeePlayer)
+        {
+            spotLight.color = Color.red;
+            // if(GameObject.FindGameObjectWithTag("glassWall"))
+            // {
+
+            // }
+
+        }
+        else
+        {
+
+            spotLight.color = Color.blue;
+        }
+
+        if (canHearPlayer)
+        {
+            soundArea.material.color = new Color32(255, 0, 0, 25);
+        }
+        else
+        {
+            soundArea.material.color = new Color32(0, 255, 0, 25);
+        }
+
+    }
+
+
     private IEnumerator FOVRoutine()
     {
-        WaitForSeconds WaitingTime = new WaitForSeconds(0.2f);
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
 
         while (true)
         {
-            yield return WaitingTime;
-            FieldOfViewCheck();
+            yield return wait;
+            FieldOfViewCheck(angle);
+            FieldOfSound(soundRadious);
         }
     }
 
-    private void FieldOfViewCheck()
+    private void FieldOfViewCheck(float viewAngle)
     {
-        Collider[] ObjectsinRange = Physics.OverlapSphere(transform.position, Radius, TargetMask);
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
-        if (ObjectsinRange.Length != 0)
+        if (rangeChecks.Length != 0)
         {
-            Transform Target = ObjectsinRange[0].transform;
-            Vector3 DirectionToTarget = (Target.position - transform.position).normalized;
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-            if (Vector3.Angle(transform.forward, DirectionToTarget) < Angle / 2)
+            if (Vector3.Angle(transform.forward, directionToTarget) < viewAngle / 2)
             {
-                float DistanceToTarget = Vector3.Distance(transform.position, Target.position);
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-                if (!Physics.Raycast(transform.position, DirectionToTarget, DistanceToTarget, ObstructionMask))
-                {
-                    IsPlayerVisible = true;
-               
-                }
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                    canSeePlayer = true;
                 else
-                {
-                    IsPlayerVisible = false;
-                }
+                    canSeePlayer = false;
             }
             else
-            {
-                IsPlayerVisible = false;
-            }
+                canSeePlayer = false;
         }
-        else if (IsPlayerVisible)
-        {
-            IsPlayerVisible = false;
-        }
+        else if (canSeePlayer)
+            canSeePlayer = false;
     }
+
+    private void FieldOfSound(float viewAngle)
+    {
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, soundRange, targetMask);
+
+        if (rangeChecks.Length != 0)
+        {
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+            canHearPlayer = true;
+
+
+        }
+        else
+            canHearPlayer = false;
+    }
+
+
 }
