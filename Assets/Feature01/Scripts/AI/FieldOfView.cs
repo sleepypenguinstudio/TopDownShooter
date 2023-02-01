@@ -46,6 +46,8 @@ public class FieldOfView : MonoBehaviour
         if (canSeePlayer)
         {
             spotLight.color = Color.red;
+            spotLight.range = 20f ;
+            radius = 15f;
             // if(GameObject.FindGameObjectWithTag("glassWall"))
             // {
 
@@ -56,15 +58,17 @@ public class FieldOfView : MonoBehaviour
         {
 
             spotLight.color = Color.blue;
+            spotLight.range = 10f ;
+            radius = 10f;
         }
 
         if (canHearPlayer)
         {
-            soundArea.material.color = new Color32(255, 0, 0, 25);
+            soundArea.material.color = new Color32(255, 0, 0, 50);
         }
         else
         {
-            soundArea.material.color = new Color32(0, 255, 0, 25);
+            soundArea.material.color = new Color32(0, 255, 0, 50);
         }
 
     }
