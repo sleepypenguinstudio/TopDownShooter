@@ -12,9 +12,11 @@ public class EnemyAIController : CharacterAbstractController
     [SerializeField] Transform PlayerPosition;
     NavMeshAgent agent;
     [SerializeField] Transform centrePoint;
-    [SerializeField] float range;
+    [SerializeField] float range;//range of what
     [SerializeField] float shootingInterval = 1.0f;
     float timeSinceLastShot;
+    Vector3 lastPlayerPosition;
+
 
 
     protected override void Awake()
@@ -28,21 +30,22 @@ public class EnemyAIController : CharacterAbstractController
 
     }
 
-
-
-
-    // Update is called once per frame
     void Update()
     {
 
-        if (FieldOfView.canSeePlayer)
+       VisiblityDetection();
+      
+
+    }
+
+    void VisiblityDetection() // enemy movement, player chase, enemy shoot, enemy look at player
+    {
+         if (FieldOfView.canSeePlayer)
         {
 
             //  this.transform.rotation = EnemyMovementController.EnemyLook(FieldOfView.PlayerReference.transform,this.transform).rotation;
 
             //MovementController.Look((FieldOfView.PlayerReference.transform.position-transform.position));
-
-
 
             Look();
 
@@ -55,33 +58,40 @@ public class EnemyAIController : CharacterAbstractController
             }
 
 
-
-
             Move(PlayerPosition);
 
-
-
-
-
-
+            lastPlayerPosition = PlayerPosition.position;
 
         }
 
-
+        else if (Vector3.Distance(transform.position, lastPlayerPosition) > 0.1f && lastPlayerPosition != Vector3.zero)
+        {
+            Debug.Log("ashchi!!!!");
+            agent.SetDestination(lastPlayerPosition);
+            // Move(lastPlayerPosition);
+        }
         else
         {
-
+            lastPlayerPosition = Vector3.zero;
+            Debug.Log("still Moving");
             Move();
 
         }
 
-
-
-
-
     }
 
+    void SoundDetection() // needs work
+    {
+        if(FieldOfView.canHearPlayer)
+        {
+            Move(PlayerPosition);
+            
+        }
+        // else{
 
+        //     Move();
+        // }
+    }
 
     protected override void Look()
     {
@@ -100,7 +110,6 @@ public class EnemyAIController : CharacterAbstractController
             Vector3 point;
             if (RandomPoint(centrePoint.position, range, out point)) //pass in our centre point and radius of area
             {
-                //Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
                 agent.SetDestination(point); //need update for main game 
             }
         }
@@ -110,17 +119,9 @@ public class EnemyAIController : CharacterAbstractController
 
     public void Move(Transform playerPosition)
     {
-        //  if (agent.remainingDistance <= agent.stoppingDistance) //done with path
-        //{
-
-        // if (RandomPoint(CentrePoint.position, Range, out point)) //pass in our centre point and radius of area
-        //{
-        //Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
         Vector3 UpdatedPlayerPosition = new Vector3(playerPosition.position.x - Random.Range(3f, 8f), playerPosition.position.y, playerPosition.position.z - Random.Range(3f, 8f));
-        agent.SetDestination(UpdatedPlayerPosition); //need update for main game 
-                                                     //}
-                                                     //}
-
+        agent.SetDestination(UpdatedPlayerPosition); 
+                            
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
@@ -138,17 +139,6 @@ public class EnemyAIController : CharacterAbstractController
         result = Vector3.zero;
         return false;
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
